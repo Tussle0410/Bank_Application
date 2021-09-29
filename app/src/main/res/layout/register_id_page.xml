@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background_img"
+    android:orientation="vertical"
+    android:weightSum="100">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14"
+        android:orientation="horizontal"
+        android:weightSum="100">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:background="#4F4ECF"
+            android:src="@drawable/back_space_img"
+            android:id="@+id/register_id_back_button"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="40"
+            android:text="회원가입"
+            android:textColor="@color/white"
+            android:fontFamily="@font/login_font"
+            android:textSize="40sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:text="아이디를 입력해주세요:)"
+        android:fontFamily="@font/login_font"
+        android:textSize="25sp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/login_font"
+        android:text="회원가입에 필요합니다."
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:id="@+id/register_userID"
+        android:layout_margin="10dp"
+        android:hint="사용하실 아이디를 입력해주세요."
+        android:paddingLeft="10dp"
+        android:fontFamily="@font/login_font"
+        android:background="@drawable/login_edit_button_border"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_margin="10dp"
+        android:backgroundTint="#4F4ECF"
+        android:text="확 인"
+        android:textSize="24sp"
+        android:fontFamily="@font/login_font"
+        android:id="@+id/register_id_button" />
+
+</LinearLayout>
