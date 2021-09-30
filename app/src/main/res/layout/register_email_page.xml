@@ -125,7 +125,7 @@
         android:layout_weight="8"
         android:layout_margin="10dp"
         android:backgroundTint="#4F4ECF"
-        android:text="확 인"
+        android:text="계 속"
         android:textSize="24sp"
         android:fontFamily="@font/login_font"
         android:id="@+id/register_email_button" />

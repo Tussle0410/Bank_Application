@@ -29,14 +29,14 @@ public class register_email_activity extends AppCompatActivity{
         address_text = (TextView)findViewById(R.id.register_email_address_text);
         email_address_edit = (EditText)findViewById(R.id.register_email_address);
         back_button = (ImageButton)findViewById(R.id.register_email_back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
+        back_button.setOnClickListener(new View.OnClickListener() {     //뒤로가기 버튼시 activity 종료!
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
         email_spinner = (Spinner) findViewById(R.id.register_email_spinner);
-        ArrayAdapter spinner_Adapter = ArrayAdapter.createFromResource(
+        ArrayAdapter spinner_Adapter = ArrayAdapter.createFromResource(             //스피너 Adapter
                 this,R.array.email_spinner, android.R.layout.simple_spinner_dropdown_item);
         spinner_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         email_spinner.setAdapter(spinner_Adapter);
@@ -44,11 +44,11 @@ public class register_email_activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(email_spinner.getItemAtPosition(position).equals("직접입력")){
-                    address_text.setVisibility(View.VISIBLE);
+                    address_text.setVisibility(View.VISIBLE);           //직접 입력시 EditView 보이게 설정
                     email_address_edit.setVisibility(View.VISIBLE);
                 }else{
                     email_address = String.valueOf(email_spinner.getItemAtPosition(position));
-                    address_text.setVisibility(View.INVISIBLE);
+                    address_text.setVisibility(View.INVISIBLE);         //직접 입력 아닐시 EditView 숨김
                     email_address_edit.setVisibility(View.INVISIBLE);
                 }
             }
@@ -56,7 +56,7 @@ public class register_email_activity extends AppCompatActivity{
             public void onNothingSelected(AdapterView<?> parent) { }
         });
         next_button = (Button)findViewById(R.id.register_email_button);
-        next_button.setOnClickListener(new View.OnClickListener() {
+        next_button.setOnClickListener(new View.OnClickListener() {         //다음 회윈가입 페이지로 넘어감
             @Override
             public void onClick(View v) {
                 Intent info_intent = new Intent(getApplicationContext(),register_info_activity.class);

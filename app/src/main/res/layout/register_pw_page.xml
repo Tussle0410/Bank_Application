@@ -17,7 +17,7 @@
             android:layout_weight="12"
             android:background="#4F4ECF"
             android:src="@drawable/back_space_img"
-            android:id="@+id/register_id_back_button"/>
+            android:id="@+id/register_pw_back_button"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:text="아이디를 입력해주세요:)"
+        android:text="비밀번호를 입력해주세요:)"
         android:fontFamily="@font/login_font"
         android:textSize="25sp"
         android:paddingLeft="10dp"/>
@@ -47,7 +47,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:fontFamily="@font/login_font"
-        android:text="회원가입에 필요합니다."
+        android:text="1번만 입력하니 정확히 입력해주세요!"
         android:textSize="15sp"
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"/>
@@ -59,25 +59,31 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:id="@+id/register_userID"
+        android:id="@+id/register_userPW"
         android:layout_margin="10dp"
-        android:hint="사용할 아이디를 입력해주세요."
+        android:hint="사용할 비밀번호를 입력해주세요."
         android:paddingLeft="10dp"
+        android:inputType="textPassword"
         android:fontFamily="@font/login_font"
         android:background="@drawable/login_edit_button_border"/>
-    <LinearLayout
-        android:layout_width="match_parent"
+    <CheckBox
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="7"
+        android:layout_marginLeft="10dp"
+        android:text="비밀번호 보기"
+        android:id="@+id/register_pw_show_check"
+        android:fontFamily="@font/login_font"
+        android:textSize="20sp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
         android:layout_margin="10dp"
         android:backgroundTint="#4F4ECF"
-        android:text="계 속"
+        android:text="회원가입"
         android:textSize="24sp"
         android:fontFamily="@font/login_font"
-        android:id="@+id/register_id_button" />
+        android:id="@+id/register_pw_button" />
 
 </LinearLayout>

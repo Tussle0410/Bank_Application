@@ -1,5 +1,4 @@
 package com.example.bank_application;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -7,14 +6,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class register_info_activity extends AppCompatActivity {
     private Button day_of_birth_change;
@@ -25,7 +19,7 @@ public class register_info_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_info_page);
         back_button = (ImageButton)findViewById(R.id.register_info_back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
+        back_button.setOnClickListener(new View.OnClickListener() {     //뒤로가기 버튼시 activity 종료
             @Override
             public void onClick(View v) {
                 finish();
@@ -35,7 +29,7 @@ public class register_info_activity extends AppCompatActivity {
         month = (TextView)findViewById(R.id.register_month);
         day = (TextView)findViewById(R.id.register_day);
         day_of_birth_change = (Button)findViewById(R.id.day_of_birth_change_button);
-        day_of_birth_change.setOnClickListener(new View.OnClickListener() {
+        day_of_birth_change.setOnClickListener(new View.OnClickListener() {         //DatePicker 다이얼 출력
             @Override
             public void onClick(View v) {
                 showDialog();
@@ -43,7 +37,7 @@ public class register_info_activity extends AppCompatActivity {
         });
 
     }
-    private void showDialog(){
+    private void showDialog(){      //DatePickerDialog 출력 메소드
         Calendar c = Calendar.getInstance();
         DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 new DatePickerDialog.OnDateSetListener() {
@@ -54,7 +48,7 @@ public class register_info_activity extends AppCompatActivity {
                         day.setText(String.valueOf(dayOfMonth));
                     }
                 },c.get(Calendar.YEAR),c.get(Calendar.MONDAY),c.get(Calendar.DAY_OF_MONTH));
-        dialog.getDatePicker().setCalendarViewShown(false);
+        dialog.getDatePicker().setCalendarViewShown(false);     //Spinner로 보이게 설정
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
     }

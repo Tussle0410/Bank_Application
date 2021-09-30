@@ -17,8 +17,15 @@ public class login_activity extends AppCompatActivity {
         ID = (EditText)findViewById(R.id.login_ID_input);           //페이지 요소들 선언
         Password = (EditText) findViewById(R.id.login_PW_input);
         found_Password_Button = (Button) findViewById(R.id.password_find_button);
+        found_Password_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent found_intent = new Intent(getApplicationContext(),found_pw_activity.class);
+                startActivity(found_intent);
+            }
+        });
         register_Button = (Button) findViewById(R.id.register_button);
-        register_Button.setOnClickListener(new View.OnClickListener() {
+        register_Button.setOnClickListener(new View.OnClickListener() { //회원가입 페이지 이동
             @Override
             public void onClick(View v) {
                 Intent register_intent = new Intent(getApplicationContext(),register_id_activity.class);

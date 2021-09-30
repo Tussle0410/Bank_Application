@@ -10,27 +10,28 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class register_id_activity extends AppCompatActivity {
-    private Button next_button;
+public class register_pw_activity extends AppCompatActivity {
     private ImageButton back_button;
-    private EditText ID;
+    private Button register_button;
+    private EditText userPW;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_id_page);
-        back_button = (ImageButton) findViewById(R.id.register_id_back_button);
+        setContentView(R.layout.register_pw_page);
+        back_button = (ImageButton) findViewById(R.id.register_pw_back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-            }           //뒤로가기 사용시 activity 종료
+            }
         });
-        next_button = (Button) findViewById(R.id.register_id_button);
-        next_button.setOnClickListener(new View.OnClickListener() {
+        register_button = (Button) findViewById(R.id.register_pw_button);
+        register_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {           //다음 회원가입 페이지로 이동
-                Intent next_intent = new Intent(getApplicationContext(),register_email_activity.class);
-                startActivity(next_intent);
+            public void onClick(View v) {
+                finishAffinity();
+                Intent login_intent = new Intent(getApplicationContext(),login_activity.class);
+                startActivity(login_intent);
             }
         });
 

@@ -21,6 +21,9 @@
         <activity android:name=".register_email_activity"/>
         <activity android:name=".register_id_activity"/>
         <activity android:name=".register_info_activity"/>
+        <activity android:name=".register_pw_activity"/>
+        <activity android:name=".found_pw_activity"/>
+        <activity android:name=".found_id_activity"/>
     </application>
 
 </manifest>
