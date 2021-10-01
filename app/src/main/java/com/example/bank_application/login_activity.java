@@ -33,6 +33,13 @@ public class login_activity extends AppCompatActivity {
             }
         });
         login_Button = (Button) findViewById(R.id.login_button);
+        login_Button.setOnClickListener(new View.OnClickListener() {        //로그인 버튼 선언 및 클릭 이벤트
+            @Override
+            public void onClick(View v) {
+                Intent home_intent = new Intent(getApplicationContext(),home_nav_activity.class);
+                startActivity(home_intent);
+            }
+        });
 
     }
 }

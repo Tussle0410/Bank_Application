@@ -24,6 +24,7 @@
         <activity android:name=".register_pw_activity"/>
         <activity android:name=".found_pw_activity"/>
         <activity android:name=".found_id_activity"/>
+        <activity android:name=".home_nav_activity"/>
     </application>
 
 </manifest>

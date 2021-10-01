@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        android:title="홈"
+        android:icon="@drawable/menu_home_icon"
+        />
+    <item
+        android:id="@+id/nav_financial_products"
+        android:enabled="true"
+        android:title="금융상품"
+        android:icon="@drawable/menu_financial_products_icon"
+        />
+    <item
+        android:id="@+id/nav_myBank"
+        android:enabled="true"
+        android:title="MY뱅크"
+        android:icon="@drawable/menu_mybank_icon"
+        />
+    <item
+        android:id="@+id/nav_myAsset"
+        android:enabled="true"
+        android:title="MY자산"
+        android:icon="@drawable/menu_myasset_icon"
+        />
+</menu>

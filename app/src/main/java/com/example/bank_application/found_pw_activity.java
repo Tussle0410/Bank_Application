@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,21 +18,21 @@ public class found_pw_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.found_pw_page);
         back_button = (ImageButton) findViewById(R.id.found_pw_back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
+        back_button.setOnClickListener(new View.OnClickListener() {     //뒤로가기 선언 및 클릭 기능
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
         pw_found_button = (Button)findViewById(R.id.found_pw_button);
-        pw_found_button.setOnClickListener(new View.OnClickListener() {
+        pw_found_button.setOnClickListener(new View.OnClickListener() {      //PW 찾기 버튼 선언 및 클릭 기능
             @Override
             public void onClick(View v) {
                 showDialog();
             }
         });
         id_intent_button = (Button) findViewById(R.id.found_pw_intent_button);
-        id_intent_button.setOnClickListener(new View.OnClickListener() {
+        id_intent_button.setOnClickListener(new View.OnClickListener() {        //ID 찾기 페이지로 이동
             @Override
             public void onClick(View v) {
                 Intent found_id_intent = new Intent(getApplicationContext(),found_id_activity.class);
@@ -41,18 +40,18 @@ public class found_pw_activity extends AppCompatActivity {
             }
         });
     }
-    private void showDialog(){
+    private void showDialog(){          //PW 찾기 Dialog Method
         AlertDialog.Builder Dialog = new AlertDialog.Builder(found_pw_activity.this);
-        Dialog.setTitle("OOO님의 비밀번호 찾기 결과입니다.");
-        Dialog.setMessage("\n비밀번호 들어갈 자리 \n\n\n 확인을 누르면 로그인 화면으로 넘어갑니다.");
+        Dialog.setTitle("OOO님의 비밀번호 찾기 결과입니다.");        //Dialog 제목
+        Dialog.setMessage("\n비밀번호 들어갈 자리 \n\n\n 확인을 누르면 로그인 화면으로 넘어갑니다.");//Dialog 내용
         Dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which) {    //Dialog 확인 버튼시
                 finishAffinity();
                 Intent login_intent = new Intent(getApplicationContext(),login_activity.class);
                 startActivity(login_intent);
             }
         });
-        Dialog.show();
+        Dialog.show();      //Dialog 보여주기
     }
 }
