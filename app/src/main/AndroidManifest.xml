@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bank_Application">
-        <activity android:name=".register_email_page"></activity>
+        <activity android:name=".register_email_page" />
         <activity android:name=".splash_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,13 +18,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".login_activity" />
-        <activity android:name=".register_email_activity"/>
-        <activity android:name=".register_id_activity"/>
-        <activity android:name=".register_info_activity"/>
-        <activity android:name=".register_pw_activity"/>
-        <activity android:name=".found_pw_activity"/>
-        <activity android:name=".found_id_activity"/>
-        <activity android:name=".home_nav_activity"/>
+        <activity android:name=".register_email_activity" />
+        <activity android:name=".register_id_activity" />
+        <activity android:name=".register_info_activity" />
+        <activity android:name=".register_pw_activity" />
+        <activity android:name=".found_pw_activity" />
+        <activity android:name=".found_id_activity" />
+        <activity android:name=".home_nav_activity" />
+        <activity android:name=".profile_activity" />
     </application>
 
 </manifest>

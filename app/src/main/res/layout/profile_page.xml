@@ -18,7 +18,7 @@
             android:background="#00ff0000"
             android:backgroundTint="@color/white"
             android:src="@drawable/back_space_white_img"
-            android:id="@+id/found_id_back_button"/>
+            android:id="@+id/profile_back_button"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"

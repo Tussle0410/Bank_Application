@@ -26,6 +26,7 @@
             android:layout_weight="7"
             android:layout_gravity="right"
             android:layout_marginRight="15dp"
+            android:id="@+id/nav_mybank_setting_button"
             android:src="@drawable/mybank_setting_icon"
             />
     <LinearLayout
@@ -94,7 +95,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="45"
                 android:layout_marginTop="10dp"
-
+                android:id="@+id/nav_mybank_profile_button"
                 android:text="나의 정보 보기 > "
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/gray"
