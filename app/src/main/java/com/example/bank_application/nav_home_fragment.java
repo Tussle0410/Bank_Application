@@ -42,13 +42,7 @@ public class nav_home_fragment extends Fragment {
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                    Button logout = (Button)view.findViewById(R.id.nav_logout);
-                    logout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityCompat.finishAffinity(getActivity());
-                        }
-                    });
+
             }
 
             @Override
