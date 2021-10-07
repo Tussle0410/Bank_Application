@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:id="@+id/drawerView"
@@ -59,7 +59,7 @@
               android:text="기무기훈"
               android:id="@+id/drawer_name"
               android:fontFamily="@font/login_font"
-              android:textSize="35sp"
+              android:textSize="30sp"
               android:gravity="right|bottom"
               android:textColor="@color/black"/>
           <TextView
@@ -70,7 +70,7 @@
               android:textColor="@color/black"
               android:fontFamily="@font/login_font"
               android:gravity="left|bottom"
-              android:textSize="35sp"
+              android:textSize="30sp"
               android:layout_marginLeft="10dp"/>
       </LinearLayout>
       <TextView
@@ -80,8 +80,9 @@
           android:text="행복한 하루 되세요."
           android:fontFamily="@font/login_font"
           android:textColor="@color/gray"
-          android:layout_marginLeft="20dp"
-          android:textSize="20sp"/>
+          android:gravity="right"
+          android:layout_marginRight="20dp"
+          android:textSize="15sp"/>
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"

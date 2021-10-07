@@ -1,10 +1,12 @@
 package com.example.bank_application;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 import androidx.annotation.NonNull;
@@ -18,13 +20,13 @@ import androidx.fragment.app.Fragment;
 public class nav_home_fragment extends Fragment {
     private DrawerLayout drawerLayout;
     private View drawerView;
-    private Button drawer_button;
+    private ImageButton drawer_button;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_nav_home_page,container,false);
-        drawer_button = (Button)view.findViewById(R.id.drawer_button);
+        drawer_button = (ImageButton)view.findViewById(R.id.drawer_button);
         drawer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
