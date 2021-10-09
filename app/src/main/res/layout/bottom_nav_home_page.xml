@@ -13,7 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="55dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"/>
@@ -173,8 +174,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@drawable/home_back_border"
-                android:layout_margin="20dp">
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:weightSum="100">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="계좌관리"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="ATM"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+
+                </LinearLayout>
             </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="20dp">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/home_financial_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+                <LinearLayout
+                    android:id="@+id/home_financial_indicator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    app:layout_constraintTop_toTopOf="@id/home_financial_viewpager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
