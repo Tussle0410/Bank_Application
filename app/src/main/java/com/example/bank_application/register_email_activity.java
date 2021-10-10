@@ -20,12 +20,14 @@ public class register_email_activity extends AppCompatActivity{
     private Spinner email_spinner;
     private Button next_button;
     private EditText email_ID,email_address_edit;
-    private String email_address;
+    private String email_address,userID;
     private TextView address_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_email_page);
+        userID = getIntent().getExtras().getString("userID");
+        email_ID = (EditText)findViewById(R.id.register_email);
         address_text = (TextView)findViewById(R.id.register_email_address_text);
         email_address_edit = (EditText)findViewById(R.id.register_email_address);
         back_button = (ImageButton)findViewById(R.id.register_email_back_button);
@@ -46,10 +48,12 @@ public class register_email_activity extends AppCompatActivity{
                 if(email_spinner.getItemAtPosition(position).equals("직접입력")){
                     address_text.setVisibility(View.VISIBLE);           //직접 입력시 EditView 보이게 설정
                     email_address_edit.setVisibility(View.VISIBLE);
+                    email_address= email_address_edit.getText().toString();
                 }else{
                     email_address = String.valueOf(email_spinner.getItemAtPosition(position));
                     address_text.setVisibility(View.INVISIBLE);         //직접 입력 아닐시 EditView 숨김
                     email_address_edit.setVisibility(View.INVISIBLE);
+                    email_address  = email_spinner.getItemAtPosition(position).toString();
                 }
             }
             @Override

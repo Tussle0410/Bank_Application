@@ -18,6 +18,7 @@ public class register_id_activity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_id_page);
+        ID = (EditText)findViewById(R.id.register_userID);
         back_button = (ImageButton) findViewById(R.id.register_id_back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +31,7 @@ public class register_id_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {           //다음 회원가입 페이지로 이동
                 Intent next_intent = new Intent(getApplicationContext(),register_email_activity.class);
+                next_intent.putExtra("userID",ID.getText().toString());
                 startActivity(next_intent);
             }
         });
