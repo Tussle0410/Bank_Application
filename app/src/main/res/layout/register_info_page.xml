@@ -85,6 +85,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="50dp"
             android:text="남"
+            android:checked="true"
             android:textSize="25sp"
             android:id="@+id/register_gender_man"
             android:fontFamily="@font/login_font"/>
