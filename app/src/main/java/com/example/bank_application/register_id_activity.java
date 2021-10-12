@@ -119,8 +119,7 @@ public class register_id_activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            System.out.println(result);
-            if(result.equals("true")){          //중복 없을시 ID 정보와 함께 다음페이지 이동
+            if(result.equals("false")){          //중복 없을시 ID 정보와 함께 다음페이지 이동
                 Toast.makeText(register_id_activity.this,
                         "아이디가 중복되었습니다. \n 다른 아이디를 사용해주세요.",Toast.LENGTH_SHORT).show();
             }else{                  //중복시 Toast 메세지 띄우기

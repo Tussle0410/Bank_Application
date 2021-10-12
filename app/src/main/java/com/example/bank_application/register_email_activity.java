@@ -178,8 +178,7 @@ public class register_email_activity extends AppCompatActivity{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            System.out.println(email_ID+"@"+email_address);
-            if(result.equals("true")){
+            if(result.equals("false")){
                 Toast.makeText(register_email_activity.this,
                         "중복된 이메일입니다.\n다른 이메일을 사용해주세요.",Toast.LENGTH_SHORT).show();
             }else{

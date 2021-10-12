@@ -21,7 +21,7 @@ public class register_info_activity extends AppCompatActivity {
     private ImageButton back_button;
     private EditText userName;
     private CheckBox personal_info_agree,man_checkBox,girl_checkBox;
-    private String gender,userID, email;
+    private String gender="남",userID, email;
     TextView year,month,day;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,7 +107,7 @@ public class register_info_activity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int years, int monthOfYear, int dayOfMonth) {
                         year.setText(String.valueOf(years));
-                        month.setText(String.valueOf(monthOfYear));
+                        month.setText(String.valueOf(monthOfYear+1));
                         day.setText(String.valueOf(dayOfMonth));
                     }
                 },c.get(Calendar.YEAR),c.get(Calendar.MONDAY),c.get(Calendar.DAY_OF_MONTH));
