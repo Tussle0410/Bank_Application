@@ -1,0 +1,10 @@
+1) WampServer를 이용하여 Mysql 형태에 데이터베이스를 형성한다.
+(A database is formed in the form of Mysql using WampServer.)
+
+2)테이블을 형성한다.( Bank_Mysql.txt에 작성해놓았습니다.)
+(Form a table. (I wrote it in Bank_Mysql.txt))
+
+3)cmd를 통해 인터넷 IP를 얻은 후 databaseIP 클래스에 자신의 아이피주소 변경하기
+(After obtaining an Internet IP through cmd, change your IP address in the database IP class.)
+
+참고 블로그(https://webnautes.tistory.com/828)
