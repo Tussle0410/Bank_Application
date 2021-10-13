@@ -115,7 +115,7 @@
         android:layout_height="match_parent"
         android:layout_marginRight="20dp"
         android:layout_weight="50"
-        android:backgroundTint="#4F4ECF"
+        android:backgroundTint="@color/main_color"
         android:text="로그인"
         android:fontFamily="@font/login_font"
         android:id="@+id/login_button"

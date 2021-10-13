@@ -50,7 +50,7 @@
                 android:id="@+id/myasset_name"
                 android:layout_marginLeft="15dp"
                 android:textSize="35sp"
-                android:textColor="#4F4ECF"
+                android:textColor="@color/main_color"
                 android:fontFamily="@font/login_font"/>
             <TextView
                 android:layout_width="0dp"

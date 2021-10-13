@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 
-public class home_viewPager_Adapter extends RecyclerView.Adapter<home_viewPager_Adapter.MyViewHolder> {
+public class viewPager_Adapter extends RecyclerView.Adapter<viewPager_Adapter.MyViewHolder> {
     private Context  context;
     private String[] ImageUrl;
-    public home_viewPager_Adapter(Context context, String[] ImageUrl){
+    public viewPager_Adapter(Context context, String[] ImageUrl){
         this.context = context;
         this.ImageUrl = ImageUrl;
     }
@@ -21,7 +21,7 @@ public class home_viewPager_Adapter extends RecyclerView.Adapter<home_viewPager_
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_event_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_item,parent,false);
         return new MyViewHolder(view);
     }
 
@@ -39,7 +39,7 @@ public class home_viewPager_Adapter extends RecyclerView.Adapter<home_viewPager_
         private ImageView eventView;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
-            eventView = itemView.findViewById(R.id.home_event_item);
+            eventView = itemView.findViewById(R.id.event_item);
         }
         public void bindSliderImage(String imageUrl){       //Glide 함수
             Glide.with(context)

@@ -1,11 +1,9 @@
 package com.example.bank_application;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,7 +11,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -79,7 +76,7 @@ public class nav_home_fragment extends Fragment {
         financial_viewPager = (ViewPager2)view.findViewById(R.id.home_financial_viewpager);     //viewpager 선언
         financial_indicator = (LinearLayout)view.findViewById(R.id.home_financial_indicator);   //view indicator 선언
         financial_viewPager.setOffscreenPageLimit(1);                       //view pager 미리 로딩되는 수 1개 설정
-        financial_viewPager.setAdapter(new home_viewPager_Adapter(view.getContext(),financial_ImageUrl));   //RecyclerViews 어뎁터 설정
+        financial_viewPager.setAdapter(new viewPager_Adapter(view.getContext(),financial_ImageUrl));   //RecyclerViews 어뎁터 설정
         financial_viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {      //viewpager 변경시 동작 이벤트
@@ -92,7 +89,7 @@ public class nav_home_fragment extends Fragment {
         event_viewPager = (ViewPager2) view.findViewById(R.id.home_event_viewpager);    //위와 동일한 방법
         event_indicator = (LinearLayout)view.findViewById(R.id.home_event_indicator);
         event_viewPager.setOffscreenPageLimit(1);
-        event_viewPager.setAdapter(new home_viewPager_Adapter(view.getContext(),event_ImageUrl));
+        event_viewPager.setAdapter(new viewPager_Adapter(view.getContext(),event_ImageUrl));
         event_viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -111,7 +108,7 @@ public class nav_home_fragment extends Fragment {
         params.setMargins(16,8,16,8);               //indicator margin 설정
         for(int i=0;i<indicator.length;i++){            //indicator 기본모양 설정 및 추가
             indicator[i] = new ImageView(view.getContext());        
-            indicator[i].setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.home_indicator_inactive));
+            indicator[i].setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.indicator_inactive));
             indicator[i].setLayoutParams(params);
             indicator_layout.addView(indicator[i]);
         }
@@ -122,9 +119,9 @@ public class nav_home_fragment extends Fragment {
         for(int i=0;i<childCount;i++){
             ImageView imageView = (ImageView)indicator.getChildAt(i);
             if(i==position){    //indicator 현재 보여지고 있는 부분 색깔 변경하기
-                imageView.setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.home_indicator_active));
+                imageView.setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.indicator_active));
             }else{
-                imageView.setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.home_indicator_inactive));
+                imageView.setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.indicator_inactive));
             }
         }
     }

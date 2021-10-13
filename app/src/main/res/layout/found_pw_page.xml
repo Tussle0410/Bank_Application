@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="12"
-            android:background="#4F4ECF"
+            android:background="@color/main_color"
             android:src="@drawable/back_space_img"
             android:id="@+id/found_pw_back_button"/>
         <TextView
@@ -103,7 +103,7 @@
         android:layout_gravity="right"
         android:layout_marginRight="10dp"
         android:layout_weight="8"
-        android:backgroundTint="#4F4ECF"
+        android:backgroundTint="@color/main_color"
         android:fontFamily="@font/login_font"
         android:text="찾 기"
         android:id="@+id/found_pw_button"

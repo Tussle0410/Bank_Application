@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -42,7 +43,6 @@ public class register_pw_activity extends AppCompatActivity {
         gender = getIntent().getExtras().getString("gender");
         birth = getIntent().getExtras().getString("birth");
         IP_ADDRESS = ((databaseIP)getApplication()).getIP_Address();
-        accountAddress = AccountAddress();
         userPW = (EditText) findViewById(R.id.register_userPW);
 
         show_pw_check = (CheckBox) findViewById(R.id.register_pw_show_check);
@@ -67,44 +67,44 @@ public class register_pw_activity extends AppCompatActivity {
         register_button.setOnClickListener(new View.OnClickListener() { //회원가입 완료 버튼 선언 및 클릭 이벤트
             @Override
             public void onClick(View v) {
-                    if(userPW.getText().toString().equals("")){
-                        Toast.makeText(register_pw_activity.this,
-                                "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Register register = new Register();
-                        register.execute("http://" + IP_ADDRESS + "/bank/register.php",userID,
-                                userPW.getText().toString(),Name,gender,email,birth,accountAddress);
+                accountAddress = AccountAddress(IP_ADDRESS);
+                Handler handler =  new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(userPW.getText().toString().equals("")){
+                            Toast.makeText(register_pw_activity.this,
+                                    "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        }else if(address_check){
+                            Register register = new Register();
+                            register.execute("http://" + IP_ADDRESS + "/bank/register.php",userID,
+                                    userPW.getText().toString(),Name,gender,email,birth,accountAddress);
+                        }else{
+                            Toast.makeText(register_pw_activity.this,
+                                    "생성된 계좌가 중복되어 다시 한번 눌러주세요.", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                },300);
             }
         });
 
     }
-    private String AccountAddress(){
+    private String AccountAddress(String IP_ADDRESS){
         address_check=false;
         String address="";
-        while (!address_check) {
-            int[] temp = new int[4];
-            int max_value = 999, min_value=100;
-            Random random = new Random();
-            temp[0] = random.nextInt(max_value-min_value+1) +min_value;
-            max_value = 9999; min_value=1000;
-            temp[1] = random.nextInt(max_value-min_value+1) + min_value;
-            temp[2] = random.nextInt(max_value-min_value+1) + min_value;
-            max_value=99; min_value=10;
-            temp[3] = random.nextInt(max_value-min_value+1) + min_value;
-            for(int i=0;i<temp.length;i++){
-                address += String.valueOf(temp[i]); }
-            addressCheck addressCheck = new addressCheck();
-            addressCheck.execute("http://" + IP_ADDRESS + "/bank/accountAddressCheck.php",address);
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            },300);
-        }
-        System.out.println("발동" + address);
+        int[] temp = new int[4];
+        int max_value = 999, min_value=100;
+        Random random = new Random();
+        temp[0] = random.nextInt(max_value-min_value+1) +min_value;
+        max_value = 9999; min_value=1000;
+        temp[1] = random.nextInt(max_value-min_value+1) + min_value;
+        temp[2] = random.nextInt(max_value-min_value+1) + min_value;
+        max_value=99; min_value=10;
+        temp[3] = random.nextInt(max_value-min_value+1) + min_value;
+        for(int i=0;i<temp.length;i++){
+            address += String.valueOf(temp[i]); }
+        addressCheck addressCheck = new addressCheck();
+        addressCheck.execute("http://" + IP_ADDRESS + "/bank/accountAddressCheck.php",address);
         return address;
     }
     private class addressCheck extends AsyncTask<String,Void,String>{
@@ -169,7 +169,6 @@ public class register_pw_activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            System.out.println(result);
             if(result.equals("true")){
                 address_check = true;
             }
