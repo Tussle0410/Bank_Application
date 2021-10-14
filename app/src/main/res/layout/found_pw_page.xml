@@ -64,16 +64,16 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="8"
         android:text="아이디 찾기"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:id="@+id/found_pw_intent_button"
         android:fontFamily="@font/login_font"
         android:layout_gravity="right"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/white"
         android:background="#00ff0000"
-        android:textColor="@color/gray"/>
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -88,7 +88,7 @@
         android:layout_weight="8"
         android:id="@+id/found_pw_email"
         android:layout_margin="10dp"
-        android:hint="ex)123@google.com"
+        android:hint="Ex) HoonGilDong@google.com"
         android:paddingLeft="10dp"
         android:fontFamily="@font/login_font"
         android:background="@drawable/login_edit_button_border"/>

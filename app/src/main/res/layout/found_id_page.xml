@@ -68,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:maxLength="10"
         android:id="@+id/found_id_name"
         android:layout_margin="10dp"
         android:hint="이름을 입력해주세요."
@@ -88,7 +89,7 @@
         android:layout_weight="8"
         android:id="@+id/found_id_birth"
         android:layout_margin="10dp"
-        android:hint="생년월일을 입력해주세요. Ex)19970410"
+        android:hint="생년월일 Ex)1997-04-10"
         android:paddingLeft="10dp"
         android:fontFamily="@font/login_font"
         android:background="@drawable/login_edit_button_border"/>
