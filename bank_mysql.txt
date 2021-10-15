@@ -9,11 +9,14 @@ addressMainKinds varchar(20) not null default 'deposit',
 primary key(ID,Email)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 create table accountAddress(
 userID varchar(20) not null,
 address varchar(20) not null,
 kinds varchar(20) default 'deposit',
 money bigint not null default 0,
+remittanceLimit int defalut 500000,
+currentremittance int default 0,
 primary key(address),
 foreign key(userID) references user(ID)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
