@@ -35,7 +35,7 @@ public class found_id_activity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.found_id_page);
-        IP_ADDRESS = ((databaseIP) getApplication()).getIP_Address();
+        IP_ADDRESS = ((databaseIP) getApplication()).getIP_Address();   //데이터 베이스 IP 가져오기
         name = (EditText) findViewById(R.id.found_id_name);
         birth = (EditText) findViewById(R.id.found_id_birth);
 
@@ -91,7 +91,7 @@ public class found_id_activity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(String... strings) {    //데이터 베이스에서 ID 가져오는 Method
             String databaseUrl = strings[0];
             String Name = strings[1];
             String Birth = strings[2];

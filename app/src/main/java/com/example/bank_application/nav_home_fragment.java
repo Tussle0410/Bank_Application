@@ -1,9 +1,11 @@
 package com.example.bank_application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,8 +23,8 @@ public class nav_home_fragment extends Fragment {
     private ViewPager2 event_viewPager,financial_viewPager;
     private LinearLayout event_indicator,financial_indicator;
     private DrawerLayout drawerLayout;
-    private View drawerView;
-    private View view;
+    private View drawerView, view;
+    private Button Transaction_history_button, remittance_button;
     private ImageButton drawer_button,drawer_close_button;
     private String[] event_ImageUrl = {             // 이벤트 ViewPager Url 배열
             "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",
@@ -98,6 +100,16 @@ public class nav_home_fragment extends Fragment {
             }
         });
         setUpIndicator(event_ImageUrl.length,event_indicator);
+
+        Transaction_history_button = (Button) view.findViewById(R.id.Transaction_history_button);
+        remittance_button = (Button) view.findViewById(R.id.remittance_button);
+        Transaction_history_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Transaction_intent = new Intent(view.getContext(),);
+                startActivity(Transaction_intent);
+            }
+        });
 
         return view;
     }

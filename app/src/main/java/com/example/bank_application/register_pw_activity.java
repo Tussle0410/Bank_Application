@@ -89,7 +89,7 @@ public class register_pw_activity extends AppCompatActivity {
         });
 
     }
-    private String AccountAddress(String IP_ADDRESS){
+    private String AccountAddress(String IP_ADDRESS){   //계좌번호 랜덤 생성
         address_check=false;
         String address="";
         int[] temp = new int[4];
@@ -107,7 +107,7 @@ public class register_pw_activity extends AppCompatActivity {
         addressCheck.execute("http://" + IP_ADDRESS + "/bank/accountAddressCheck.php",address);
         return address;
     }
-    private class addressCheck extends AsyncTask<String,Void,String>{
+    private class addressCheck extends AsyncTask<String,Void,String>{   //데이터베이스에 계좌번호 중복되는지 확인
         ProgressDialog progressDialog;
         String err_msg;
 
@@ -175,7 +175,7 @@ public class register_pw_activity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
-    private class Register extends AsyncTask<String,Void,String>{
+    private class Register extends AsyncTask<String,Void,String>{   //데이터베이스 유저 추가하는 클래스
         ProgressDialog progressDialog;
         String err_msg;
 

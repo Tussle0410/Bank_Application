@@ -117,7 +117,7 @@ public class register_email_activity extends AppCompatActivity{
         }
         return result;
     }
-    private class Check_Email extends AsyncTask<String,Void,String>{
+    private class Check_Email extends AsyncTask<String,Void,String>{    //데이터베이스에서 Email 중복되는지 확인
         ProgressDialog progressDialog;
         String error_msg=null;
 

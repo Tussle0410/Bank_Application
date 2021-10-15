@@ -1,5 +1,6 @@
 package com.example.bank_application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -16,11 +17,18 @@ public class home_nav_activity extends AppCompatActivity {
     nav_financial_products_fragment nav_financial_products_fragment;
     nav_myasset_fragment nav_myasset_fragment;
     nav_mybank_fragment nav_mybank_fragment;
+    String ID,Name,Birth,Gender,Email,addressMainKinds;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_nav_page);
-
+        ID = getIntent().getExtras().getString("ID");       //Intent 정보 받아오기
+        Name = getIntent().getExtras().getString("Name");
+        Birth = getIntent().getExtras().getString("Birth");
+        Gender = getIntent().getExtras().getString("Gender");
+        Email = getIntent().getExtras().getString("Email");
+        addressMainKinds = getIntent().getExtras().getString("addressMainKinds");
+        
         nav_home_fragment = new nav_home_fragment();                            //바텀 네비게이션 클릭시 이동할 Fragment 선언
         nav_financial_products_fragment = new nav_financial_products_fragment();
         nav_mybank_fragment = new nav_mybank_fragment();
