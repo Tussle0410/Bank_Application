@@ -211,6 +211,19 @@
                         android:fontFamily="@font/login_font"
                         android:backgroundTint="@color/white"
                         />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="ATM"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
 
                 </LinearLayout>
             </LinearLayout>
