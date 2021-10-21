@@ -106,8 +106,7 @@ public class nav_home_fragment extends Fragment {
         Transaction_history_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Transaction_intent = new Intent(view.getContext(),);
-                startActivity(Transaction_intent);
+
             }
         });
 
