@@ -13,7 +13,7 @@ $Address = isset($_POST['Address']) ? $_POST['Address'] : '';
 $sql_user = "insert into user(ID,PW,Name,Gender,Email,Birth) values('$ID', '$PW','$Name','$Gender','$Email','$Birth')";
 $stmt_user = $con->prepare($sql_user);
 $stmt_user->execute();
-$sql_address = "insert into accountaddress(userID,address) values('$ID','$Address')";
+$sql_address = "insert into accountaddress(userID,address,addressName) values('$ID','$Address','$Name')";
 $stmt_address = $con->prepare($sql_address);
 $stmt_address->execute();
 echo 'true';
