@@ -239,6 +239,66 @@
                         />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="계좌관리"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="ATM"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="ATM"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/home_drawer_icon"
+                        android:text="ATM"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        />
+
+                </LinearLayout>
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
