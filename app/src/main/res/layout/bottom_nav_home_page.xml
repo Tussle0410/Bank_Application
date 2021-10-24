@@ -153,9 +153,7 @@
                         android:id="@+id/Transaction_history_button"
                         android:fontFamily="@font/login_font"
                         android:text="거래내역"
-                        android:textSize="17sp"
-                        app:strokeColor="@color/gray"
-                        app:strokeWidth="2dp" />
+                        android:textSize="17sp" />
 
                     <Button
                         android:layout_width="0dp"
@@ -167,9 +165,7 @@
                         android:elevation="10dp"
                         android:fontFamily="@font/login_font"
                         android:text="송금"
-                        android:textSize="17sp"
-                        app:strokeColor="@color/gray"
-                        app:strokeWidth="2dp" />
+                        android:textSize="17sp" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout

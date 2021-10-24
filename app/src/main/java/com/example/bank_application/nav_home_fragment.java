@@ -109,6 +109,13 @@ public class nav_home_fragment extends Fragment {
 
             }
         });
+        remittance_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent remittance_intent = new Intent(view.getContext(),remittance_activity.class);
+                startActivity(remittance_intent);
+            }
+        });
 
         return view;
     }

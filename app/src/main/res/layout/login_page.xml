@@ -14,17 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:id="@+id/login_main_img"
         android:paddingLeft="10dp"
-        android:gravity="center_vertical"
+        android:gravity="bottom"
         android:text="로그인"
         android:fontFamily="@font/login_font"
-        android:textSize="50sp"/>
+        android:textSize="50sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:text="ID"
+        android:textColor="@color/black"
         android:fontFamily="@font/login_font"
         android:paddingLeft="10dp"
         android:textSize="25sp"/>
@@ -44,6 +44,7 @@
         android:layout_height="0dp"
         android:layout_weight="5"
         android:text="Password"
+        android:textColor="@color/black"
         android:fontFamily="@font/login_font"
         android:paddingLeft="10dp"
         android:textSize="25sp"/>

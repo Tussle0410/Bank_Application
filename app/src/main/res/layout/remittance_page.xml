@@ -34,14 +34,12 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:background="@color/gray"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="89.5">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="89.5"
+            android:orientation="vertical"
+            android:weightSum="100">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -154,6 +152,7 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/main_color"
                 android:background="#00ff0000"
+                android:id="@+id/remittance_address"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/login_font" />
             <Button
@@ -164,13 +163,20 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/gray"
                 android:background="#00ff0000"
+                android:id="@+id/remittance_email"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/login_font" />
         </LinearLayout>
             <FrameLayout
                 android:id="@+id/remittance_frame"
                 android:layout_width="match_parent"
-                android:layout_height="700dp"/>
+                android:layout_height="300dp"/>
         </LinearLayout>
-    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="확인"
+        android:backgroundTint="@color/main_color"
+        android:fontFamily="@font/login_font"
+        android:textSize="25sp"/>
 </LinearLayout>

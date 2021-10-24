@@ -27,6 +27,7 @@
         <activity android:name=".found_id_activity" />
         <activity android:name=".home_nav_activity" />
         <activity android:name=".profile_activity" />
+        <activity android:name=".remittance_activity"/>
     </application>
 
 </manifest>

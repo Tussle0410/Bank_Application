@@ -30,6 +30,11 @@ public class home_nav_activity extends AppCompatActivity {
         addressMainKinds = getIntent().getExtras().getString("addressMainKinds");
         
         nav_home_fragment = new nav_home_fragment();                            //바텀 네비게이션 클릭시 이동할 Fragment 선언
+        Bundle home_bundle = new Bundle();
+        home_bundle.putString("ID",ID);
+        home_bundle.putString("Name",Birth);
+        nav_home_fragment.setArguments(home_bundle);
+
         nav_financial_products_fragment = new nav_financial_products_fragment();
         nav_mybank_fragment = new nav_mybank_fragment();
         nav_myasset_fragment = new nav_myasset_fragment();
