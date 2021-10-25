@@ -51,10 +51,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="123-1234-1234-12"
+                android:id="@+id/remittance_address"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/main_color"
-
                 android:textSize="25sp"
                 android:gravity="center_vertical|center"/>
             <LinearLayout
@@ -83,8 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="50"
                     android:gravity="right|center_vertical"
-                    android:id="@+id/remittance_able_money"
-                    android:text="11293810298"
+                    android:id="@+id/remittance_money"
                     android:fontFamily="@font/login_font"
                     android:textColor="@color/main_color"
                     android:textSize="20sp"/>
@@ -119,8 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="50"
                     android:gravity="right|center_vertical"
-                    android:id="@+id/remittance_limit_money"
-                    android:text="500000"
+                    android:id="@+id/remittance_limit"
                     android:fontFamily="@font/login_font"
                     android:textColor="@color/main_color"
                     android:textSize="20sp"/>
@@ -152,7 +149,7 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/main_color"
                 android:background="#00ff0000"
-                android:id="@+id/remittance_address"
+                android:id="@+id/remittance_address_send"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/login_font" />
             <Button
@@ -163,20 +160,13 @@
                 android:layout_margin="5dp"
                 android:textColor="@color/gray"
                 android:background="#00ff0000"
-                android:id="@+id/remittance_email"
+                android:id="@+id/remittance_email_send"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/login_font" />
         </LinearLayout>
             <FrameLayout
                 android:id="@+id/remittance_frame"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="400dp"/>
         </LinearLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="확인"
-        android:backgroundTint="@color/main_color"
-        android:fontFamily="@font/login_font"
-        android:textSize="25sp"/>
 </LinearLayout>

@@ -17,6 +17,7 @@
         android:layout_height="65dp"
         android:hint="받는 분 이메일을 정확히 입력해주세요."
         android:fontFamily="@font/login_font"
+        android:id="@+id/remittance_receive_email"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:paddingLeft="10dp"/>
@@ -42,6 +43,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:id="@+id/remittance_receive_name"
             android:hint="받는 분 이름"
             />
     </LinearLayout>
@@ -63,5 +65,15 @@
         android:layout_marginLeft="10dp"
         android:textSize="15sp"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="확인"
+        android:backgroundTint="@color/main_color"
+        android:fontFamily="@font/login_font"
+        android:textSize="25sp"/>
 
 </LinearLayout>

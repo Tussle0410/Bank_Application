@@ -37,6 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="60"
             android:background="@color/white"
+            android:id="@+id/remittance_address"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"
@@ -66,5 +67,16 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="195dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="확인"
+        android:id="@+id/remittance_address_button"
+        android:backgroundTint="@color/main_color"
+        android:fontFamily="@font/login_font"
+        android:textSize="25sp"/>
 
 </LinearLayout>

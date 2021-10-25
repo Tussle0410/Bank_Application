@@ -1,6 +1,8 @@
 package com.example.bank_application;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -18,11 +21,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 public class nav_home_fragment extends Fragment {
     private ViewPager2 event_viewPager,financial_viewPager;
     private LinearLayout event_indicator,financial_indicator;
     private DrawerLayout drawerLayout;
+    private TextView address,amount,userName;
     private View drawerView, view;
     private Button Transaction_history_button, remittance_button;
     private ImageButton drawer_button,drawer_close_button;
@@ -42,6 +55,17 @@ public class nav_home_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_nav_home_page,container,false);
+        Bundle Info = getArguments();
+        address = (TextView) view.findViewById(R.id.home_address);      //TextView 선언
+        amount = (TextView) view.findViewById(R.id.home_amount);
+        userName = (TextView) view.findViewById(R.id.home_userName); 
+        StringBuilder address_builder = new StringBuilder(Info.getString("Address"));   //계좌번호 형태로 변경
+        address_builder.insert(3,"-");
+        address_builder.insert(8,"-");
+        address_builder.insert(13,"-");
+        userName.setText(Info.getString("Name"));       //Bundle 받아온 정보 TextView 등록
+        address.setText(address_builder.toString());
+        amount.setText(String.valueOf(Info.getInt("Money")));
         drawer_button = (ImageButton)view.findViewById(R.id.drawer_button);         //drawer_layout 가져오는 버튼 선언
         drawer_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +136,12 @@ public class nav_home_fragment extends Fragment {
         remittance_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int limit = Info.getInt("Limit") - Info.getInt("curLimit");
                 Intent remittance_intent = new Intent(view.getContext(),remittance_activity.class);
+                remittance_intent.putExtra("Address",Info.getString("Address"));
+                remittance_intent.putExtra("Address_hyphen",address_builder.toString());
+                remittance_intent.putExtra("Limit",limit);
+                remittance_intent.putExtra("Money",String.valueOf(Info.getInt("Money")));
                 startActivity(remittance_intent);
             }
         });
@@ -143,4 +172,5 @@ public class nav_home_fragment extends Fragment {
             }
         }
     }
+
 }

@@ -152,19 +152,18 @@ public class login_activity extends AppCompatActivity {
                         "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
             }else{
                 JsonString = result;
-                showResult();
+                loginExecute();
             }
             progressDialog.dismiss();
 
         }
-        protected void showResult(){
+        protected void loginExecute(){
             String Tag_Json = "login";
             String Tag_ID = "ID";
             String Tag_Name = "Name";
             String Tag_Birth = "Birth";
             String Tag_Gender = "Gender";
             String Tag_Email ="Email";
-            String Tag_addressMainKinds = "addressMainKinds";
             try {
                 JSONObject jsonObject = new JSONObject(JsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(Tag_Json);
@@ -175,7 +174,6 @@ public class login_activity extends AppCompatActivity {
                 home_intent.putExtra("Birth",value.getString(Tag_Birth));
                 home_intent.putExtra("Gender",value.getString(Tag_Gender));
                 home_intent.putExtra("Email",value.getString(Tag_Email));
-                home_intent.putExtra("addressMainKinds",value.getString(Tag_addressMainKinds));
                 startActivity(home_intent);
             }catch (Exception e){
                 Log.d("PHP","에러발생" + e);
