@@ -242,6 +242,7 @@ public class register_pw_activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            Log.d("PHP", result);
             if(result.equals("true")){
                 Toast.makeText(register_pw_activity.this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 finishAffinity();           //지금까지 열렸던 회원가입 페이지 종료

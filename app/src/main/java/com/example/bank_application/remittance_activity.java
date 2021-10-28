@@ -31,14 +31,33 @@ public class remittance_activity extends AppCompatActivity {
                 finish();
             }
         });
+
         address = (TextView)findViewById(R.id.remittance_address);      //TextView 선언 및 값 등록
         money = (TextView)findViewById(R.id.remittance_money);
         limit = (TextView) findViewById(R.id.remittance_limit);
         address.setText(getIntent().getExtras().getString("Address_hyphen"));
-        money.setText(getIntent().getExtras().getString("Money"));
+        money.setText(String.valueOf(getIntent().getExtras().getInt("Money")));
         limit.setText(String.valueOf(getIntent().getExtras().getInt("Limit")));
-        email_remittance_fragment = new email_remittance_fragment();
+
+        email_remittance_fragment = new email_remittance_fragment();        //Frame 관련 fragment 설정
         address_remittance_fragment = new address_remittance_fragment();
+        Bundle email_bundle = new Bundle();
+        email_bundle.putString("ID",getIntent().getExtras().getString("ID"));
+        email_bundle.putString("Name",getIntent().getExtras().getString("Name"));
+        email_bundle.putString("Address",getIntent().getExtras().getString("Address"));
+        email_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
+        email_bundle.putInt("Money",getIntent().getExtras().getInt("Money"));
+        email_bundle.putInt("Limit",getIntent().getExtras().getInt("Limit"));
+        email_remittance_fragment.setArguments(email_bundle);
+        Bundle address_bundle = new Bundle();
+        address_bundle.putString("ID",getIntent().getExtras().getString("ID"));
+        address_bundle.putString("Name",getIntent().getExtras().getString("Name"));
+        address_bundle.putString("Address",getIntent().getExtras().getString("Address"));
+        address_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
+        address_bundle.putInt("Money",getIntent().getExtras().getInt("Money"));
+        address_bundle.putInt("Limit",getIntent().getExtras().getInt("Limit"));
+        address_remittance_fragment.setArguments(email_bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.remittance_frame,address_remittance_fragment).commit();
         address_remittance = (Button) findViewById(R.id.remittance_address_send);
         address_remittance.setOnClickListener(new View.OnClickListener() {

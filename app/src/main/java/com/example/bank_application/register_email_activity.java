@@ -108,7 +108,7 @@ public class register_email_activity extends AppCompatActivity{
             }
         });
     }
-    public boolean checkEmailForm(String email){
+    public boolean checkEmailForm(String email){        //이메일 형식인지 확인
         boolean result = false;
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         Matcher matcher = pattern.matcher(email);

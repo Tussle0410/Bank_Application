@@ -141,7 +141,9 @@ public class nav_home_fragment extends Fragment {
                 remittance_intent.putExtra("Address",Info.getString("Address"));
                 remittance_intent.putExtra("Address_hyphen",address_builder.toString());
                 remittance_intent.putExtra("Limit",limit);
-                remittance_intent.putExtra("Money",String.valueOf(Info.getInt("Money")));
+                remittance_intent.putExtra("ID",Info.getString("ID"));
+                remittance_intent.putExtra("Name",Info.getString("Name"));
+                remittance_intent.putExtra("Money",Info.getInt("Money"));
                 startActivity(remittance_intent);
             }
         });
