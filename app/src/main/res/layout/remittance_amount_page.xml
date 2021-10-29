@@ -51,8 +51,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="123-1234-1234-12"
             android:fontFamily="@font/login_font"
+            android:id="@+id/remittance_amount_address"
             android:textColor="@color/main_color"
             android:textSize="25sp"
             android:gravity="center_vertical|center"/>
@@ -82,8 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="right|center_vertical"
-                android:id="@+id/remittance_amount_able_money"
-                android:text="11293810298"
+                android:id="@+id/remittance_amount_money"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"/>
@@ -118,8 +117,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="right|center_vertical"
-                android:id="@+id/remittance_amount_limit_money"
-                android:text="500000"
+                android:id="@+id/remittance_amount_limit"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"/>
@@ -169,7 +167,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:paddingRight="12dp"
-                android:text="1231234123412"
+                android:id="@+id/remittance_amount_receive_address"
                 android:gravity="center_vertical|right"
                 android:textColor="@color/main_color"
                 android:textSize="18sp"/>
@@ -230,6 +228,7 @@
                 android:layout_weight="20"
                 android:layout_marginLeft="5dp"
                 android:text="+10만"
+                android:textSize="11sp"
                 android:fontFamily="@font/login_font"
                 android:id="@+id/remittance_hundredThousand_plus"
                 android:backgroundTint="@color/gray"/>
@@ -239,7 +238,7 @@
                 android:layout_weight="20"
                 android:layout_marginLeft="5dp"
                 android:text="+100만"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 android:fontFamily="@font/login_font"
                 android:id="@+id/remittance_million_plus"
                 android:backgroundTint="@color/gray"/>

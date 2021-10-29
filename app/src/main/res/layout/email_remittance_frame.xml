@@ -41,6 +41,7 @@
             android:layout_weight="60"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/login_font"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
             android:id="@+id/remittance_receive_name"
