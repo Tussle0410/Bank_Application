@@ -260,7 +260,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="확인"
-            android:id="@+id/remittance_address_button"
+            android:id="@+id/remittance_amount_button"
             android:backgroundTint="@color/main_color"
             android:fontFamily="@font/login_font"
             android:textSize="25sp"/>
