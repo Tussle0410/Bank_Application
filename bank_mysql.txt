@@ -9,28 +9,29 @@ primary key(ID,Email)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table accountAddress(
-userID varchar(20) not null,
+ID varchar(20) not null,
 address varchar(20) not null,
 kinds varchar(20) default 'deposit',
 production_no int default 0,
 money bigint not null default 0,
-remittanceLimit int defalut 500000,
+remittanceLimit int default 500000,
 currentremittance int default 0,
-addressName varchar(20) default 'deposit',
+addressName varchar(20) not null,
 mainAddressCheck Tinyint(1) not null default 0,
 primary key(address),
-foreign key(userID) references user(ID),
-foreign key(kinds) references production(kinds)
+foreign key(ID) references user(ID),
+foreign key(production_no) references production(productionNo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table transactionHistory(
 sendAddress varchar(20) not null,
 receiveAddress varchar(20) not null,
+sendName varchar(20) not  null,
+receiveName varchar(20) not null,
 money bigint not null,
-kinds varchar(20) default 'deposit',
-transactionDate date not null,
-foreign key(sendAddress,recieveAddress) references accountaddress(address),
-foreign key(kinds) references production(kinds)
+transactionDate datetime not null,
+foreign key(sendAddress) references accountaddress(address),
+foreign key(receiveAddress) references accountaddress(address)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table production(
@@ -38,15 +39,14 @@ productionName varchar(20) not null,
 kinds varchar(20) not null,
 productionNo int not null,
 interestRate float(5,2) not null,
-primary key(kinds) 
+primary key(productionNo) 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table banner(
 bannerRoute varchar(20) not null,
-kinds varchar(20) not null,
-proudctionNo int not null,
+productionNo int not null,
 primary key(bannerRoute),
-foreign key(kinds, proudctionNo) references production(kinds,productionNo)
+foreign key(productionNo) references production(productionNo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
