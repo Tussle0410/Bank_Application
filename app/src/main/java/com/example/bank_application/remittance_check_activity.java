@@ -53,6 +53,7 @@ public class remittance_check_activity extends AppCompatActivity {
                 remittance_pw_intent.putExtra("Limit",getIntent().getExtras().getInt("Limit"));
                 remittance_pw_intent.putExtra("Address",getIntent().getExtras().getString("Address"));
                 startActivity(remittance_pw_intent);
+                finish();
             }
         });
     }

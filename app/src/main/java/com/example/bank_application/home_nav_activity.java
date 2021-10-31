@@ -31,13 +31,13 @@ public class home_nav_activity extends AppCompatActivity {
     nav_financial_products_fragment nav_financial_products_fragment;
     nav_myasset_fragment nav_myasset_fragment;
     nav_mybank_fragment nav_mybank_fragment;
-    String ID, Name, Birth, Gender, Email, addressMainKinds, JsonString,IP_ADDRESS;
+    String ID, Name, Birth, Gender, Email, addressMainKinds, JsonString;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_nav_page);
-        IP_ADDRESS = ((databaseIP) getApplication()).getIP_Address();
+        String IP_ADDRESS = ((databaseIP)getApplication()).getIP_Address();
         ID = getIntent().getExtras().getString("ID");       //Intent 정보 받아오기
         Name = getIntent().getExtras().getString("Name");
         Birth = getIntent().getExtras().getString("Birth");
@@ -73,7 +73,6 @@ public class home_nav_activity extends AppCompatActivity {
             }
         });
     }
-
     private class getAddressInfo extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         String errMsg;
@@ -152,6 +151,7 @@ public class home_nav_activity extends AppCompatActivity {
                 Bundle home_bundle = new Bundle();
                 home_bundle.putString("ID", ID);
                 home_bundle.putString("Name", Name);
+                home_bundle.putString("Email",Email);
                 home_bundle.putString("Address",values.getString(Tag_Address));
                 home_bundle.putInt("Money",values.getInt(Tag_Money));
                 home_bundle.putInt("Limit",values.getInt(Tag_limit));

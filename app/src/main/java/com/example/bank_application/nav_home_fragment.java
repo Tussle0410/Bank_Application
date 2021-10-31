@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
@@ -38,7 +41,10 @@ public class nav_home_fragment extends Fragment {
     private TextView address,amount,userName;
     private View drawerView, view;
     private Button Transaction_history_button, remittance_button;
-    private ImageButton drawer_button,drawer_close_button;
+    private ImageButton drawer_button,drawer_close_button,curMoney_button;
+    private String JsonString;
+    private String IP_ADDRESS;
+    private Bundle Info;
     private String[] event_ImageUrl = {             // 이벤트 ViewPager Url 배열
             "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",
             "https://cdn.pixabay.com/photo/2020/11/04/15/29/coffee-beans-5712780_1280.jpg",
@@ -55,7 +61,8 @@ public class nav_home_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_nav_home_page,container,false);
-        Bundle Info = getArguments();
+        IP_ADDRESS = ((databaseIP)getActivity().getApplication()).getIP_Address();
+        Info = getArguments();
         address = (TextView) view.findViewById(R.id.home_address);      //TextView 선언
         amount = (TextView) view.findViewById(R.id.home_amount);
         userName = (TextView) view.findViewById(R.id.home_userName); 
@@ -71,6 +78,14 @@ public class nav_home_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(drawerView);                               //drawer_layout 가져오는 이벤트
+            }
+        });
+        curMoney_button = (ImageButton) view.findViewById(R.id.home_curMoney_button);
+        curMoney_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCurMoney curMoney = new getCurMoney();
+                curMoney.execute("http://" + IP_ADDRESS + "/bank/getCurMoney.php",Info.getString("ID"));
             }
         });
         drawerLayout = (DrawerLayout)view.findViewById(R.id.drawer_layout);        //drawer_layout 선언
@@ -144,12 +159,21 @@ public class nav_home_fragment extends Fragment {
                 remittance_intent.putExtra("ID",Info.getString("ID"));
                 remittance_intent.putExtra("Name",Info.getString("Name"));
                 remittance_intent.putExtra("Money",Info.getInt("Money"));
+                remittance_intent.putExtra("Email",Info.getString("Email"));
                 startActivity(remittance_intent);
             }
         });
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCurMoney curMoney =new getCurMoney();
+        curMoney.execute("http://" + IP_ADDRESS+ "/bank/getCurMoney.php",Info.getString("ID"));
+    }
+
     private void setUpIndicator(int count, LinearLayout indicator_layout){      //indicator 기본설정
         ImageView[] indicator = new ImageView[count];           //Url 크기만큼 indicator 설정
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -174,5 +198,80 @@ public class nav_home_fragment extends Fragment {
             }
         }
     }
+    protected class getCurMoney extends AsyncTask<String,Void,String>{
+        ProgressDialog progressDialog;
+        String errMsg;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(view.getContext(),"Pleases Wait",null,
+                    true, true);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String databaseIP = strings[0];
+            String ID=strings[1];
+            String PostValue = "ID=" + ID;
+            try {
+                URL url = new URL(databaseIP);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(PostValue.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int httpRequestCode = httpURLConnection.getResponseCode();
+                InputStream inputStream;
+                if(httpRequestCode == HttpURLConnection.HTTP_OK){
+                    inputStream = httpURLConnection.getInputStream();
+                }else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while((line=bufferedReader.readLine())!=null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return sb.toString();
+            }catch (Exception e){
+                errMsg=e.toString();
+                return errMsg;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            JsonString = result;
+            getMoney();
+            progressDialog.dismiss();
+        }
+        protected void getMoney(){
+            String Tag_JSON = "money";
+            String Tag_money = "money";
+            try {
+                JSONObject jsonObject = new JSONObject(JsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
+                JSONObject value = jsonArray.getJSONObject(0);
+                amount.setText(value.getString(Tag_money));
+            }catch (Exception e){
+                Log.d("PHP", "에러발생"+e);
+            }
+        }
+    }
 }

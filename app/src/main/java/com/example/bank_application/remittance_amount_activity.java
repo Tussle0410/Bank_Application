@@ -47,6 +47,7 @@ public class remittance_amount_activity extends AppCompatActivity {
             }
         });
         IP_ADDRESS = ((databaseIP)getApplication()).getIP_Address();
+        receive_name = getIntent().getExtras().getString("Receive_name");
         address = (TextView) findViewById(R.id.remittance_amount_address);      //TextView 선언
         limit = (TextView) findViewById(R.id.remittance_amount_limit);
         money = (TextView) findViewById(R.id.remittance_amount_money);
@@ -56,7 +57,6 @@ public class remittance_amount_activity extends AppCompatActivity {
         money.setText(String.valueOf(getIntent().getExtras().getInt("Money")));
         if(getIntent().getExtras().getString("Check").equals("0")){
             receive_address.setText(getIntent().getExtras().getString("Receive_Address"));
-            receive_name = getIntent().getExtras().getString("Receive_name");
         }else{
             getEmail_info getEmail_info = new getEmail_info();
             getEmail_info.execute("http://" + IP_ADDRESS + "/bank/get_email_info.php",
@@ -104,17 +104,22 @@ public class remittance_amount_activity extends AppCompatActivity {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent next_intent = new Intent(getApplicationContext(),remittance_check_activity.class);
-                next_intent.putExtra("ID",getIntent().getExtras().getString("ID"));
-                next_intent.putExtra("Name",getIntent().getExtras().getString("Name"));
-                next_intent.putExtra("Address",getIntent().getExtras().getString("Address"));
-                next_intent.putExtra("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
-                next_intent.putExtra("Money",getIntent().getExtras().getInt("Money"));
-                next_intent.putExtra("Limit",getIntent().getExtras().getInt("Limit"));
-                next_intent.putExtra("Receive_address",receive_address.getText().toString());
-                next_intent.putExtra("Amount",amount.getText().toString());
-                next_intent.putExtra("Receive_name",receive_name);
-                startActivity(next_intent);
+                if(Integer.parseInt(amount.getText().toString())>getIntent().getExtras().getInt("Limit")){
+                    Toast.makeText(remittance_amount_activity.this, "한도를 초과한 금액입니다.", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent next_intent = new Intent(getApplicationContext(), remittance_check_activity.class);
+                    next_intent.putExtra("ID", getIntent().getExtras().getString("ID"));
+                    next_intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    next_intent.putExtra("Address", getIntent().getExtras().getString("Address"));
+                    next_intent.putExtra("Address_hyphen", getIntent().getExtras().getString("Address_hyphen"));
+                    next_intent.putExtra("Money", getIntent().getExtras().getInt("Money"));
+                    next_intent.putExtra("Limit", getIntent().getExtras().getInt("Limit"));
+                    next_intent.putExtra("Receive_address", receive_address.getText().toString());
+                    next_intent.putExtra("Amount", amount.getText().toString());
+                    next_intent.putExtra("Receive_name", receive_name);
+                    startActivity(next_intent);
+                    finish();
+                }
             }
         });
 
@@ -198,13 +203,11 @@ public class remittance_amount_activity extends AppCompatActivity {
         protected void getAddress(){
             String Tag_JSON="address";
             String Tag_address="address";
-            String Tag_name = "name";
             try {
                 JSONObject jsonObject = new JSONObject(JsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
                 JSONObject value = jsonArray.getJSONObject(0);
                 receive_address.setText(value.getString(Tag_address));
-                receive_name = value.getString(Tag_name);
             }catch (Exception e){
                 Log.d("PHP","에러발생 " + e);
             }

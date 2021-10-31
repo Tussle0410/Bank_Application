@@ -59,16 +59,25 @@
         />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:text="※ 받는 분 이름을 정확하게 명시해주어야 합니다."
         android:fontFamily="@font/login_font"
         android:textColor="@color/black"
         android:layout_marginLeft="10dp"
         android:textSize="15sp"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="※ 해당하는 이메일에 주 계좌번호로 전송되며, 이메일 전송으로는 자신의 다른 계좌로 전송할 수 없습니다.꼭 유의하시길 바랍니다."
+        android:fontFamily="@font/login_font"
+        android:textColor="@color/red"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp"/>
+        android:layout_height="22dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="100dp"

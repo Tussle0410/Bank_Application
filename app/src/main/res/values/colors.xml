@@ -13,4 +13,5 @@
     <color name="myasset_piechart_color2">#ffc000</color>
     <color name="myasset_piechart_color3">#8fd9b6</color>
     <color name="myasset_piechart_color4">#d395d0</color>
+    <color name="red">#ff0000</color>
 </resources>

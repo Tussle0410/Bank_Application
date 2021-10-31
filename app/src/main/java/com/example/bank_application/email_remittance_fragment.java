@@ -51,9 +51,13 @@ public class email_remittance_fragment extends Fragment {
                     if (!register_email_activity.checkEmailForm(email.getText().toString())) {
                         Toast.makeText(view.getContext(), "이메일 형식으로 입력해주세요.", Toast.LENGTH_SHORT).show();
                     }else{
-                        CheckEmail checkEmail = new CheckEmail();
-                        checkEmail.execute("http://" + IP_ADDRESS + "/bank/remittance_emailCheck.php",email.getText().toString(),
-                                name.getText().toString());
+                        if(email.getText().toString().equals(Info.getString("Email"))){
+                            Toast.makeText(view.getContext(), "이메일 전송으로는 자신 계좌로 송금하지 못합니다.", Toast.LENGTH_SHORT).show();
+                        }else {
+                            CheckEmail checkEmail = new CheckEmail();
+                            checkEmail.execute("http://" + IP_ADDRESS + "/bank/remittance_emailCheck.php", email.getText().toString(),
+                                    name.getText().toString());
+                        }
                     }
                 }
             }
@@ -119,7 +123,6 @@ public class email_remittance_fragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.d("PHP",result);
             if(result.equals("false")){
                 Toast.makeText(view.getContext(),
                         "이메일에 해당하는 계좌가 존재하지 않거나\n이메일과 수신인의 이름이 일치하지 않습니다.",
@@ -133,6 +136,7 @@ public class email_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Money", Info.getInt("Money"));
                 amount_intent.putExtra("Limit", Info.getInt("Limit"));
                 amount_intent.putExtra("Email",email.getText().toString());
+                amount_intent.putExtra("Receive_name",name.getText().toString());
                 amount_intent.putExtra("Check","1");
                 startActivity(amount_intent);
             }

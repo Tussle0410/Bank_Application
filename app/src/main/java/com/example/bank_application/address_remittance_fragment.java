@@ -50,8 +50,12 @@ public class address_remittance_fragment extends Fragment {
                 if(address.getText().toString().isEmpty()){
                     Toast.makeText(view.getContext(), "계좌번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else{
-                    CheckAddress checkAddress = new CheckAddress();
-                    checkAddress.execute("http://" + IP_ADDRESS + "/bank/remittance_CheckAddress.php",address.getText().toString());
+                    if(address.getText().toString().equals(Info.getString("Address"))){
+                        Toast.makeText(view.getContext(), "동일한 계좌로 송금할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        CheckAddress checkAddress = new CheckAddress();
+                        checkAddress.execute("http://" + IP_ADDRESS + "/bank/remittance_CheckAddress.php",address.getText().toString());
+                    }
                 }
             }
         });
@@ -107,14 +111,14 @@ public class address_remittance_fragment extends Fragment {
                 httpURLConnection.disconnect();
                 return sb.toString().trim();
             }catch (Exception e){
-                return e.toString();
+                errMsg = e.toString();
+                return errMsg;
             }
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            System.out.println(result);
             if(result.equals("false")){
                 Toast.makeText(view.getContext(), "존재하지 않는 계좌입니다.", Toast.LENGTH_SHORT).show();
             }else{
