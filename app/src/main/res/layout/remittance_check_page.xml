@@ -48,14 +48,16 @@
             android:fontFamily="@font/login_font"
             android:textColor="@color/black"
             android:layout_marginLeft="20dp"/>
+
         <TextView
+            android:id="@+id/remittance_check_address"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="123-1234-1234-12"
             android:fontFamily="@font/login_font"
+            android:gravity="center_vertical|center"
             android:textColor="@color/main_color"
-            android:textSize="25sp"
-            android:gravity="center_vertical|center"/>
+            android:textSize="25sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -82,8 +84,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="right|center_vertical"
-                android:id="@+id/remittance_amount_able_money"
-                android:text="11293810298"
+                android:id="@+id/remittance_check_money"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"/>
@@ -118,8 +119,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:gravity="right|center_vertical"
-                android:id="@+id/remittance_amount_limit_money"
-                android:text="500000"
+                android:id="@+id/remittance_check_limit"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/main_color"
                 android:textSize="20sp"/>
@@ -171,10 +171,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:paddingRight="12dp"
-                android:text="1231234123412"
+                android:fontFamily="@font/login_font"
+                android:id="@+id/remittance_check_receive_address"
                 android:gravity="center_vertical|right"
                 android:textColor="@color/main_color"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,7 +201,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="65"
-                android:text="10000"
+                android:id="@+id/remittance_check_amount"
                 android:fontFamily="@font/login_font"
                 android:gravity="right|center_vertical"
                 android:textColor="@color/main_color"
@@ -236,7 +237,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="70"
                 android:paddingLeft="20dp"
-                android:text="이찬형"
+                android:id="@+id/remittance_check_name"
                 android:gravity="left|center_vertical"
                 android:textColor="@color/black"
                 android:fontFamily="@font/login_font"
@@ -262,7 +263,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="70"
                 android:paddingLeft="20dp"
-                android:text="이찬형"
+                android:id="@+id/remittance_check_receive_name"
                 android:gravity="left|center_vertical"
                 android:textColor="@color/black"
                 android:fontFamily="@font/login_font"

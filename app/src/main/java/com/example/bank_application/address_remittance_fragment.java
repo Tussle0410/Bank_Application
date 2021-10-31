@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,7 +34,7 @@ public class address_remittance_fragment extends Fragment {
     private Button next_button;
     private EditText address;
     private Bundle Info;
-    private String IP_ADDRESS;
+    private String IP_ADDRESS,JsonString;
     View view;
     @Nullable
     @Override
@@ -110,9 +114,22 @@ public class address_remittance_fragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            System.out.println(result);
             if(result.equals("false")){
                 Toast.makeText(view.getContext(), "존재하지 않는 계좌입니다.", Toast.LENGTH_SHORT).show();
             }else{
+                JsonString = result;
+                getName();
+            }
+            progressDialog.dismiss();
+        }
+        protected void getName(){
+            String Tag_JSON = "address";
+            String Tag_Name = "Name";
+            try {
+                JSONObject jsonObject = new JSONObject(JsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
+                JSONObject value = jsonArray.getJSONObject(0);
                 Intent amount_intent = new Intent(view.getContext(),remittance_amount_activity.class);
                 amount_intent.putExtra("ID", Info.getString("ID"));
                 amount_intent.putExtra("Name", Info.getString("Name"));
@@ -120,9 +137,13 @@ public class address_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Address_hyphen", Info.getString("Address_hyphen"));
                 amount_intent.putExtra("Money", Info.getInt("Money"));
                 amount_intent.putExtra("Limit", Info.getInt("Limit"));
+                amount_intent.putExtra("Receive_Address",address.getText().toString());
+                amount_intent.putExtra("Receive_name",value.getString(Tag_Name));
+                amount_intent.putExtra("Check","0");
                 startActivity(amount_intent);
+            }catch (Exception e){
+                Log.d("PHP","에러발생" + e);
             }
-            progressDialog.dismiss();
         }
     }
 }

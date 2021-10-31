@@ -42,7 +42,6 @@ public class remittance_activity extends AppCompatActivity {
         email_remittance_fragment = new email_remittance_fragment();        //Frame 관련 fragment 설정
         address_remittance_fragment = new address_remittance_fragment();
         Bundle email_bundle = new Bundle();
-        email_bundle.putString("ID",getIntent().getExtras().getString("ID"));
         email_bundle.putString("Name",getIntent().getExtras().getString("Name"));
         email_bundle.putString("Address",getIntent().getExtras().getString("Address"));
         email_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));

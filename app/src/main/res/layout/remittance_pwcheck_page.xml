@@ -17,7 +17,7 @@
             android:background="#00ff0000"
             android:backgroundTint="@color/white"
             android:src="@drawable/back_space_white_img"
-            android:id="@+id/remittance_amount_back_button"/>
+            android:id="@+id/remittance_pw_back_button"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -73,10 +73,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:paddingRight="12dp"
-                android:text="1231234123412"
+                android:id="@+id/remittance_pw_receive_address"
+                android:fontFamily="@font/login_font"
                 android:gravity="center_vertical|right"
                 android:textColor="@color/main_color"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="65"
-                android:text="10000"
+                android:id="@+id/remittance_pw_amount"
                 android:fontFamily="@font/login_font"
                 android:gravity="right|center_vertical"
                 android:textColor="@color/main_color"
@@ -138,7 +139,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="70"
                 android:paddingLeft="20dp"
-                android:text="이찬형"
+                android:id="@+id/remittance_pw_name"
                 android:gravity="left|center_vertical"
                 android:textColor="@color/black"
                 android:fontFamily="@font/login_font"
@@ -164,7 +165,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="70"
                 android:paddingLeft="20dp"
-                android:text="이찬형"
+                android:id="@+id/remittance_pw_receive_name"
                 android:gravity="left|center_vertical"
                 android:textColor="@color/black"
                 android:fontFamily="@font/login_font"
@@ -178,24 +179,34 @@
             android:fontFamily="@font/login_font"
             android:textColor="@color/black"
             android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="※비밀번호 정확히 입력해주세요."
+            android:fontFamily="@font/login_font"
+            android:layout_marginLeft="20dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:paddingLeft="10dp"
             android:gravity="center_vertical"
             android:hint="비밀번호"
+            android:id="@+id/remittance_pw"
             android:fontFamily="@font/login_font"
             android:inputType="textPassword"
             android:background="@drawable/login_edit_button_border"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginTop="103dp"
             android:text="송금"
-            android:id="@+id/remittance_check_button"
+            android:id="@+id/remittance_pw_button"
             android:backgroundTint="@color/main_color"
             android:fontFamily="@font/login_font"
             android:textSize="25sp"/>

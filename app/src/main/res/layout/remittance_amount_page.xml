@@ -167,10 +167,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="45"
                 android:paddingRight="12dp"
+                android:fontFamily="@font/login_font"
                 android:id="@+id/remittance_amount_receive_address"
                 android:gravity="center_vertical|right"
                 android:textColor="@color/main_color"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

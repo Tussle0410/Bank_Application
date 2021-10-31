@@ -133,7 +133,6 @@ public class home_nav_activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.d("PHP",result);
             JsonString = result;
             getResult();
             progressDialog.dismiss();

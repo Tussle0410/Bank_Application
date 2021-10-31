@@ -132,7 +132,8 @@ public class email_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Address_hyphen", Info.getString("Address_hyphen"));
                 amount_intent.putExtra("Money", Info.getInt("Money"));
                 amount_intent.putExtra("Limit", Info.getInt("Limit"));
-                amount_intent.putExtra("receive_address",email.getText().toString());
+                amount_intent.putExtra("Email",email.getText().toString());
+                amount_intent.putExtra("Check","1");
                 startActivity(amount_intent);
             }
             progressDialog.dismiss();
