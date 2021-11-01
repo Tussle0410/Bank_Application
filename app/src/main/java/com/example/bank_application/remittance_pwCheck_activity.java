@@ -1,6 +1,7 @@
 package com.example.bank_application;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -127,7 +128,13 @@ public class remittance_pwCheck_activity extends AppCompatActivity {
             if(result.equals("false")){
                 Toast.makeText(remittance_pwCheck_activity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(remittance_pwCheck_activity.this, "성공", Toast.LENGTH_SHORT).show();
+                Intent complete_Intent = new Intent(getApplicationContext(),remittance_complete_activity.class);
+                complete_Intent.putExtra("Receive_name",receive_name.getText().toString());
+                complete_Intent.putExtra("name",name.getText().toString());
+                complete_Intent.putExtra("amount",amount.getText().toString());
+                complete_Intent.putExtra("Receive_address",getIntent().getExtras().getString("Receive_address"));
+                startActivity(complete_Intent);
+                finish();
             }
             progressDialog.dismiss();
         }

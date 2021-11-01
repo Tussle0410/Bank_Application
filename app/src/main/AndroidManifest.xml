@@ -31,6 +31,7 @@
         <activity android:name=".remittance_amount_activity"/>
         <activity android:name=".remittance_check_activity"/>
         <activity android:name=".remittance_pwCheck_activity"/>
+        <activity android:name=".remittance_complete_activity"/>
     </application>
 
 </manifest>

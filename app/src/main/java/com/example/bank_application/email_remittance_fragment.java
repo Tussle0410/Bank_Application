@@ -139,6 +139,7 @@ public class email_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Receive_name",name.getText().toString());
                 amount_intent.putExtra("Check","1");
                 startActivity(amount_intent);
+                getActivity().finish();
             }
             progressDialog.dismiss();
         }

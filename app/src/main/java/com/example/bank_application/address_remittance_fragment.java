@@ -145,6 +145,7 @@ public class address_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Receive_name",value.getString(Tag_Name));
                 amount_intent.putExtra("Check","0");
                 startActivity(amount_intent);
+                getActivity().finish();
             }catch (Exception e){
                 Log.d("PHP","에러발생" + e);
             }
