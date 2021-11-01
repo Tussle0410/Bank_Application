@@ -11,3 +11,4 @@
 (After obtaining an Internet IP through cmd, change your IP address in the database IP class.)
 
 참고 블로그(https://webnautes.tistory.com/828)
+![릴레이션테이블](https://user-images.githubusercontent.com/69793388/139723410-bc46dcf8-585b-46f7-ad1a-b5618c89f353.png)
