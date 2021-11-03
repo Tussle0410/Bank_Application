@@ -104,7 +104,9 @@ public class remittance_amount_activity extends AppCompatActivity {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Integer.parseInt(amount.getText().toString())>getIntent().getExtras().getInt("Limit")){
+                if(amount.getText().toString().isEmpty()){
+                    Toast.makeText(remittance_amount_activity.this, "금액을 입력하세요.", Toast.LENGTH_SHORT).show();
+                } else if(Integer.parseInt(amount.getText().toString())>getIntent().getExtras().getInt("Limit")){
                     Toast.makeText(remittance_amount_activity.this, "한도를 초과한 금액입니다.", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent next_intent = new Intent(getApplicationContext(), remittance_check_activity.class);
