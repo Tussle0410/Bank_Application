@@ -92,7 +92,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <FrameLayout
                 android:id="@+id/financial_frame"
                 android:layout_width="match_parent"

@@ -37,22 +37,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="vertical"
+        android:layout_weight="7"
+        android:orientation="horizontal"
         android:weightSum="100">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="32.5"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
+            android:id="@+id/remittance_history_savings_button"
+            android:text="예·적금"
+            android:textColor="@color/main_color"
+            android:textSize="17sp"
+            android:fontFamily="@font/login_font"/>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:orientation="vertical"
-            android:weightSum="100">
-        </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/gray"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="33"
+            android:background="#00ff0000"
+            android:backgroundTint="@color/white"
+            android:id="@+id/remittance_history_funding_button"
+            android:text="펀드"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/login_font"
+            android:textSize="17sp"/>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:orientation="vertical"
-            android:weightSum="100">
-        </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/gray"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="33"
+            android:background="#00ff0000"
+            android:backgroundTint="@color/white"
+            android:text="대출"
+            android:id="@+id/remittance_history_loan_button"
+            android:textSize="17sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/login_font"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="@color/gray"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="82">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:id="@+id/remittance_history_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="2000dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
