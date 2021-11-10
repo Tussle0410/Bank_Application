@@ -17,7 +17,7 @@
             android:background="#00ff0000"
             android:backgroundTint="@color/white"
             android:src="@drawable/back_space_white_img"
-            android:id="@+id/remittance_back_button"/>
+            android:id="@+id/remittance_history_back_button"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -43,11 +43,11 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="32.5"
+            android:layout_weight="24"
             android:backgroundTint="@color/white"
             android:background="#00ff0000"
-            android:id="@+id/remittance_history_savings_button"
-            android:text="예·적금"
+            android:id="@+id/remittance_history_deposit_button"
+            android:text="입·출금"
             android:textColor="@color/main_color"
             android:textSize="17sp"
             android:fontFamily="@font/login_font"/>
@@ -59,7 +59,23 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="33"
+            android:layout_weight="24"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
+            android:id="@+id/remittance_history_savings_button"
+            android:text="예·적금"
+            android:textColor="@color/gray"
+            android:textSize="17sp"
+            android:fontFamily="@font/login_font"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/gray"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="24"
             android:background="#00ff0000"
             android:backgroundTint="@color/white"
             android:id="@+id/remittance_history_funding_button"
@@ -75,7 +91,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="33"
+            android:layout_weight="24"
             android:background="#00ff0000"
             android:backgroundTint="@color/white"
             android:text="대출"

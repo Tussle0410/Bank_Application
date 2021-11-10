@@ -80,13 +80,4 @@
                     android:textSize="25sp"/>
             </LinearLayout>
     </LinearLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#00ff0000"
-        android:text="송금내역조회"
-        android:layout_marginLeft="250dp"
-        android:fontFamily="@font/login_font"
-        android:textColor="@color/black"
-        />
 </LinearLayout>
