@@ -32,7 +32,7 @@ public class remittance_check_activity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.remittance_check_name);
         receive_name = (TextView) findViewById(R.id.remittance_check_receive_name);
         address.setText(getIntent().getExtras().getString("Address_hyphen"));
-        money.setText(String.valueOf(getIntent().getExtras().getInt("Money")));
+        money.setText(getIntent().getExtras().getString("Money"));
         limit.setText(String.valueOf(getIntent().getExtras().getInt("Limit")));
         amount.setText(getIntent().getExtras().getString("Amount"));
         receive_address.setText(getIntent().getExtras().getString("Receive_address"));
@@ -49,7 +49,7 @@ public class remittance_check_activity extends AppCompatActivity {
                 remittance_pw_intent.putExtra("Receive_name",getIntent().getExtras().getString("Receive_name"));
                 remittance_pw_intent.putExtra("Amount",getIntent().getExtras().getString("Amount"));
                 remittance_pw_intent.putExtra("Receive_address",getIntent().getExtras().getString("Receive_address"));
-                remittance_pw_intent.putExtra("Money",getIntent().getExtras().getInt("Money"));
+                remittance_pw_intent.putExtra("Money",getIntent().getExtras().getString("Money"));
                 remittance_pw_intent.putExtra("Limit",getIntent().getExtras().getInt("Limit"));
                 remittance_pw_intent.putExtra("Address",getIntent().getExtras().getString("Address"));
                 startActivity(remittance_pw_intent);

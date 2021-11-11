@@ -8,7 +8,7 @@
         android:layout_height="200dp"
         android:orientation="vertical"
         android:weightSum="100"
-        android:background="#B8F8FB">
+        android:background="#BFEFFF">
         <TextView
             android:id="@+id/history_deposit_addressName"
             android:layout_width="match_parent"
@@ -80,34 +80,26 @@
                 android:textSize="25sp"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#00ff0000"
-        android:text="송금내역조회"
-        android:layout_marginLeft="250dp"
-        android:fontFamily="@font/login_font"
-        android:textColor="@color/black"
-        android:drawableLeft="@drawable/remittance_sending_history_icon"
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="45dp"
         android:orientation="horizontal"
+        android:layout_marginTop="50dp"
         android:weightSum="100">
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="25"
+            android:layout_weight="20"
             android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/history_solid"
             android:text="1주일"
+            android:textColor="@color/history_text"
             android:fontFamily="@font/login_font"
             android:id="@+id/deposit_weekend"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="25"
+            android:layout_weight="20"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/gray"
             android:text="1개월"
@@ -116,22 +108,31 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="25"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/gray"
-            android:text="3개월"
-            android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_three_month"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="25"
+            android:layout_weight="20"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/gray"
             android:text="6개월"
             android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_six_month"
-            android:layout_marginRight="10dp"/>
+            android:id="@+id/deposit_six_month"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/gray"
+            android:text="1년"
+            android:fontFamily="@font/login_font"
+            android:id="@+id/deposit_year" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/gray"
+            android:text="전체"
+            android:fontFamily="@font/login_font"
+            android:layout_marginRight="5dp"
+            android:id="@+id/deposit_all" />
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
@@ -143,6 +144,10 @@
         android:fontFamily="@font/login_font"
         android:textColor="@color/black"
         android:id="@+id/deposit_orderBy"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="1000dp"

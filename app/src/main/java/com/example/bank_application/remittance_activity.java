@@ -36,7 +36,7 @@ public class remittance_activity extends AppCompatActivity {
         money = (TextView)findViewById(R.id.remittance_money);
         limit = (TextView) findViewById(R.id.remittance_limit);
         address.setText(getIntent().getExtras().getString("Address_hyphen"));
-        money.setText(String.valueOf(getIntent().getExtras().getInt("Money")));
+        money.setText(getIntent().getExtras().getString("Money"));
         limit.setText(String.valueOf(getIntent().getExtras().getInt("Limit")));
 
         email_remittance_fragment = new email_remittance_fragment();        //Frame 관련 fragment 설정
@@ -46,7 +46,7 @@ public class remittance_activity extends AppCompatActivity {
         email_bundle.putString("Name",getIntent().getExtras().getString("Name"));
         email_bundle.putString("Address",getIntent().getExtras().getString("Address"));
         email_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
-        email_bundle.putInt("Money",getIntent().getExtras().getInt("Money"));
+        email_bundle.putString("Money",getIntent().getExtras().getString("Money"));
         email_bundle.putInt("Limit",getIntent().getExtras().getInt("Limit"));
         email_bundle.putString("Email",getIntent().getExtras().getString("Email"));
         email_remittance_fragment.setArguments(email_bundle);
@@ -55,7 +55,7 @@ public class remittance_activity extends AppCompatActivity {
         address_bundle.putString("Name",getIntent().getExtras().getString("Name"));
         address_bundle.putString("Address",getIntent().getExtras().getString("Address"));
         address_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
-        address_bundle.putInt("Money",getIntent().getExtras().getInt("Money"));
+        address_bundle.putString("Money",getIntent().getExtras().getString("Money"));
         address_bundle.putInt("Limit",getIntent().getExtras().getInt("Limit"));
         address_remittance_fragment.setArguments(email_bundle);
 

@@ -54,7 +54,7 @@ public class remittance_amount_activity extends AppCompatActivity {
         receive_address = (TextView) findViewById(R.id.remittance_amount_receive_address);
         address.setText(getIntent().getExtras().getString("Address_hyphen"));
         limit.setText(String.valueOf(getIntent().getExtras().getInt("Limit")));
-        money.setText(String.valueOf(getIntent().getExtras().getInt("Money")));
+        money.setText(getIntent().getExtras().getString("Money"));
         if(getIntent().getExtras().getString("Check").equals("0")){
             receive_address.setText(getIntent().getExtras().getString("Receive_Address"));
         }else{
@@ -114,7 +114,7 @@ public class remittance_amount_activity extends AppCompatActivity {
                     next_intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     next_intent.putExtra("Address", getIntent().getExtras().getString("Address"));
                     next_intent.putExtra("Address_hyphen", getIntent().getExtras().getString("Address_hyphen"));
-                    next_intent.putExtra("Money", getIntent().getExtras().getInt("Money"));
+                    next_intent.putExtra("Money", getIntent().getExtras().getString("Money"));
                     next_intent.putExtra("Limit", getIntent().getExtras().getInt("Limit"));
                     next_intent.putExtra("Receive_address", receive_address.getText().toString());
                     next_intent.putExtra("Amount", amount.getText().toString());
@@ -187,7 +187,6 @@ public class remittance_amount_activity extends AppCompatActivity {
                 inputStreamReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-
                 return sb.toString().trim();
             }catch (Exception e){
                 errMsg = e.toString();

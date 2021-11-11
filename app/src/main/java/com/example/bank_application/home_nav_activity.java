@@ -144,6 +144,7 @@ public class home_nav_activity extends AppCompatActivity {
             String Tag_Address = "Address";
             String Tag_limit = "Limit";
             String Tag_cur_limit = "currentLimit";
+            String Tag_addressName = "addressName";
             try {
                 JSONObject jsonObject = new JSONObject(JsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
@@ -156,6 +157,7 @@ public class home_nav_activity extends AppCompatActivity {
                 home_bundle.putInt("Money",values.getInt(Tag_Money));
                 home_bundle.putInt("Limit",values.getInt(Tag_limit));
                 home_bundle.putInt("curLimit",values.getInt(Tag_cur_limit));
+                home_bundle.putString("addressName",values.getString(Tag_addressName));
                 nav_home_fragment.setArguments(home_bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.home_frame, nav_home_fragment).commit();//처음화면 설정
             }catch (Exception e){

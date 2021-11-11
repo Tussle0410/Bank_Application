@@ -14,4 +14,6 @@
     <color name="myasset_piechart_color3">#8fd9b6</color>
     <color name="myasset_piechart_color4">#d395d0</color>
     <color name="red">#ff0000</color>
+    <color name="history_solid">#4A5B8C</color>
+    <color name="history_text">#DFE7F2</color>
 </resources>

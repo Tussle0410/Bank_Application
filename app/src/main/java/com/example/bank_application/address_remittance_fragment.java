@@ -139,7 +139,7 @@ public class address_remittance_fragment extends Fragment {
                 amount_intent.putExtra("Name", Info.getString("Name"));
                 amount_intent.putExtra("Address", Info.getString("Address"));
                 amount_intent.putExtra("Address_hyphen", Info.getString("Address_hyphen"));
-                amount_intent.putExtra("Money", Info.getInt("Money"));
+                amount_intent.putExtra("Money", Info.getString("Money"));
                 amount_intent.putExtra("Limit", Info.getInt("Limit"));
                 amount_intent.putExtra("Receive_Address",address.getText().toString());
                 amount_intent.putExtra("Receive_name",value.getString(Tag_Name));

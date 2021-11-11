@@ -145,7 +145,12 @@ public class nav_home_fragment extends Fragment {
         Transaction_history_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent history_intent = new Intent(view.getContext(),remittance_history_activity.class);
+                history_intent.putExtra("addressName",Info.getString("addressName"));
+                history_intent.putExtra("Address_hyphen",address_builder.toString());
+                history_intent.putExtra("Money",amount.getText());
+                history_intent.putExtra("Address",Info.getString("Address"));
+                startActivity(history_intent);
             }
         });
         remittance_button.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +163,7 @@ public class nav_home_fragment extends Fragment {
                 remittance_intent.putExtra("Limit",limit);
                 remittance_intent.putExtra("ID",Info.getString("ID"));
                 remittance_intent.putExtra("Name",Info.getString("Name"));
-                remittance_intent.putExtra("Money",Info.getInt("Money"));
+                remittance_intent.putExtra("Money",amount.getText());
                 remittance_intent.putExtra("Email",Info.getString("Email"));
                 startActivity(remittance_intent);
             }

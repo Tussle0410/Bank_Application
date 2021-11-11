@@ -115,7 +115,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <FrameLayout
-                android:id="@+id/remittance_history_fragment"
+                android:id="@+id/remittance_history_frame"
                 android:layout_width="match_parent"
                 android:layout_height="2000dp" />
         </LinearLayout>
