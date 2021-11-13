@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="30dp"
@@ -13,8 +13,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:text="2021-11-10"
+            android:layout_weight="70"
             android:fontFamily="@font/login_font"
             android:gravity="bottom"
             android:textSize="16sp"
@@ -22,7 +21,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_weight="30"
             android:gravity="right|bottom"
             android:textSize="25sp"
             android:fontFamily="@font/login_font"
@@ -30,7 +29,7 @@
             android:id="@+id/history_list_kind"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
@@ -40,7 +39,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:text="GS25안녕원룸점"
             android:fontFamily="@font/login_font"
             android:gravity="center_vertical"
             android:textSize="20sp"
@@ -50,7 +48,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="40"
-            android:text="1000000000"
             android:gravity="right|center_vertical"
             android:fontFamily="@font/login_font"
             android:textColor="@color/red"
@@ -67,7 +64,7 @@
             android:textSize="17sp"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="410dp"
         android:layout_height="1dp"
         android:background="@color/gray"/>
 </LinearLayout>

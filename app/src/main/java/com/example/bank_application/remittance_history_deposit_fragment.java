@@ -1,5 +1,6 @@
 package com.example.bank_application;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class remittance_history_deposit_fragment extends Fragment {
         weekend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(weekend.getTextColors().equals(text_color)){
+                if(!weekend.getTextColors().equals(text_color)){
                     mArrayList.clear();
                     getHistory getHistory = new getHistory();
                     getHistory.execute("http://" + IP_Address + "/bank/getHistory.php",Info.getString("Address"),"7");
@@ -76,12 +77,9 @@ public class remittance_history_deposit_fragment extends Fragment {
         all = (Button) view.findViewById(R.id.deposit_all);
         deposit_recycler = (RecyclerView) view.findViewById(R.id.deposit_recycleView);
         mArrayList = new ArrayList<>();
-        deposit_adapter = new remittance_history_Adapter(getActivity(),mArrayList);
-        deposit_layoutManager = new LinearLayoutManager(view.getContext());
-        deposit_recycler.setLayoutManager(deposit_layoutManager);
-        deposit_recycler.setAdapter(deposit_adapter);
+        InitRecycleView(deposit_recycler,view,mArrayList,deposit_layoutManager,deposit_adapter,getActivity());
         getHistory getHistory = new getHistory();
-        getHistory.execute("http://" + IP_Address + "/bank/getHistory.php",Info.getString("Address"),"30");
+        getHistory.execute("http://" + IP_Address + "/bank/getHistory.php",Info.getString("Address"),"7");
         return view;
     }
     protected class getHistory extends AsyncTask<String,Void,String>{
@@ -180,5 +178,13 @@ public class remittance_history_deposit_fragment extends Fragment {
                 Log.d("PHP","에러발생 : " + e);
             }
         }
+    }
+    public RecyclerView InitRecycleView(RecyclerView Recycle, View view, ArrayList<remittance_history_data> list,
+                                        RecyclerView.LayoutManager manager, remittance_history_Adapter adapter, Activity activity){
+        manager = new LinearLayoutManager(view.getContext());
+        adapter = new remittance_history_Adapter(activity,list);
+        Recycle.setLayoutManager(manager);
+        Recycle.setAdapter(adapter);
+        return Recycle;
     }
 }

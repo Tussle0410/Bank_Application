@@ -46,6 +46,6 @@ public class remittance_history_Adapter extends RecyclerView.Adapter<remittance_
     }
     @Override
     public int getItemCount() {
-        return 0;
+        return (null !=list ? list.size():0);
     }
 }
