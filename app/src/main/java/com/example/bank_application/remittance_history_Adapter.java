@@ -42,7 +42,12 @@ public class remittance_history_Adapter extends RecyclerView.Adapter<remittance_
         holder.money.setText(String.valueOf(list.get(position).getMoney()));
         holder.addressName.setText(list.get(position).getReceiveName());
         holder.date.setText(list.get(position).getDate());
-        holder.kinds.setText("송금");
+        if(list.get(position).getAddress().equals(list.get(position).getReceiveAddress())){
+            holder.kinds.setText("입금");
+        }else{
+            holder.kinds.setText("송금");
+        }
+
     }
     @Override
     public int getItemCount() {

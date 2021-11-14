@@ -3,7 +3,17 @@ package com.example.bank_application;
 import java.io.Serializable;
 
 public class remittance_history_data implements Serializable {
-    String sendAddress,receiveAddress,sendName,receiveName,date;
+    String sendAddress;
+    String receiveAddress;
+    String sendName;
+    String receiveName;
+    String date;
+
+    public String getAddress() {
+        return address; }
+    public void setAddress(String address) {
+        this.address = address; }
+    String address;
     long money;
     public String getSendAddress() {
         return sendAddress; }

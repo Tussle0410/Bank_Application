@@ -31,40 +31,38 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-
-public class remittance_history_deposit_fragment extends Fragment {
+public class remittance_history_loan_fragment extends Fragment {
     TextView addressName, money, address;
     Button weekend, month, sixMonth, year, all,orderBy;
     ArrayList<remittance_history_data> mArrayList;
-    RecyclerView deposit_recycler;
-    RecyclerView.LayoutManager deposit_layoutManager;
-    remittance_history_Adapter deposit_adapter;
+    RecyclerView loan_recycler;
+    RecyclerView.LayoutManager loan_layoutManager;
+    remittance_history_Adapter loan_adapter;
     String JsonString, IP_Address,OrderBy="transactionDate";
     Bundle Info;
     View view;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.remittance_history_deposit_page, container, false);
+        view = inflater.inflate(R.layout.remittance_history_loan_page,container,false);
         int text_color = ContextCompat.getColor(view.getContext(), R.color.history_text);
         int black_color = ContextCompat.getColor(view.getContext(), R.color.black);
         int white_color = ContextCompat.getColor(view.getContext(),R.color.white);
         int solid_color = ContextCompat.getColor(view.getContext(),R.color.history_solid);
         Info = getArguments();
         IP_Address = ((databaseIP) getActivity().getApplication()).getIP_Address();
-        deposit_recycler = (RecyclerView) view.findViewById(R.id.deposit_recycleView);  //RecycleView 설정
+        loan_recycler = (RecyclerView) view.findViewById(R.id.loan_recycleView);  //RecycleView 설정
         mArrayList = new ArrayList<>();
         InitRecycleView();
         getHistoryExecute("7");
-        addressName = (TextView) view.findViewById(R.id.history_deposit_addressName);   //레이아웃 요소 설정
+        addressName = (TextView) view.findViewById(R.id.history_loan_addressName);   //레이아웃 요소 설정
         addressName.setText(Info.getString("addressName"));
-        money = (TextView) view.findViewById(R.id.history_deposit_money);
+        money = (TextView) view.findViewById(R.id.history_loan_money);
         money.setText(Info.getString("Money"));
-        address = (TextView) view.findViewById(R.id.history_deposit_address);
+        address = (TextView) view.findViewById(R.id.history_loan_address);
         address.setText(Info.getString("Address_hyphen"));
-        weekend = (Button) view.findViewById(R.id.deposit_weekend);//거래내역 기준 변경
+        weekend = (Button) view.findViewById(R.id.loan_weekend);//거래내역 기준 변경
         weekend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +137,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        orderBy = (Button) view.findViewById(R.id.deposit_orderBy);
+        orderBy = (Button) view.findViewById(R.id.loan_orderBy);
         orderBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,7 +255,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                     data.setDate(value.getString(Tag_date));
                     data.setAddress(Info.getString("Address"));
                     mArrayList.add(data);
-                    deposit_adapter.notifyDataSetChanged();
+                    loan_adapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
                 Log.d("PHP", "에러발생 : " + e);
@@ -266,12 +264,12 @@ public class remittance_history_deposit_fragment extends Fragment {
     }
 
     public void InitRecycleView() {
-        //RecycleView 초기화
         mArrayList.clear();
-        deposit_layoutManager = new LinearLayoutManager(view.getContext());
-        deposit_adapter = new remittance_history_Adapter(getActivity(), mArrayList);
-        deposit_recycler.setLayoutManager(deposit_layoutManager);
-        deposit_recycler.setAdapter(deposit_adapter);
+        //RecycleView 초기화
+        loan_layoutManager = new LinearLayoutManager(view.getContext());
+        loan_adapter = new remittance_history_Adapter(getActivity(), mArrayList);
+        loan_recycler.setLayoutManager(loan_layoutManager);
+        loan_recycler.setAdapter(loan_adapter);
     }
     public Button buttonBasicColorSet(Button b,int white_color,int black_color){
         b.setBackgroundColor(white_color);

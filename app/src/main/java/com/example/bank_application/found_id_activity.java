@@ -50,13 +50,11 @@ public class found_id_activity extends AppCompatActivity {
         found_id_button.setOnClickListener(new View.OnClickListener() {     //ID 찾기 버튼 선언
             @Override
             public void onClick(View v) {
-                int check=0;
-                for (int i=0;i<birth.length();i++){
-                    if(birth.getText().toString().charAt(i)=='-'){
-                        check++;
-                    }
+                boolean check=false;
+                if(birth.toString().charAt(4)=='-' & birth.toString().charAt('7')=='-'){
+                    check=true;
                 }
-                if(check==2) {
+                if(check) {
                     foundID foundID = new foundID();
                     foundID.execute("http://" + IP_ADDRESS + "/bank/foundID.php",
                             name.getText().toString(), birth.getText().toString());

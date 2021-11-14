@@ -15,7 +15,6 @@
             android:layout_height="0dp"
             android:layout_weight="30"
             android:layout_marginLeft="50dp"
-            android:text="계좌이름"
             android:fontFamily="@font/login_font"
             android:textSize="25sp"
             android:gravity="left|center_vertical"
@@ -30,8 +29,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="80"
-                android:text="123-1234-1234-12"
+                android:layout_weight="85"
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/black"
                 android:gravity="left|center_vertical"
@@ -40,7 +38,7 @@
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="20"
+                android:layout_weight="15"
                 android:background="#00ff0000"
                 android:src="@drawable/remittance_bankname_icon"
                 android:id="@+id/history_deposit_select"/>
@@ -64,7 +62,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="60"
-                android:text="100000000"
                 android:fontFamily="@font/login_font"
                 android:textSize="22sp"
                 android:textColor="@color/main_color"
@@ -113,6 +110,7 @@
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/white"
             android:text="6개월"
+            android:textSize="12sp"
             android:textColor="@color/black"
             android:fontFamily="@font/login_font"
             android:id="@+id/deposit_six_month"/>
