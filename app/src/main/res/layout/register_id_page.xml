@@ -63,12 +63,20 @@
         android:layout_margin="10dp"
         android:hint="사용할 아이디를 입력해주세요."
         android:paddingLeft="10dp"
+        android:maxLength="12"
+        android:textColor="@color/black"
         android:fontFamily="@font/login_font"
         android:background="@drawable/login_edit_button_border"/>
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="5"
+        android:paddingLeft="10dp"
+        android:text="대소문자,숫자 특수문자(!,?)을 사용한 6-12글자만 가능합니다."
+        android:fontFamily="@font/login_font"
+        android:id="@+id/register_id_notice"
+        android:textSize="15sp"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"

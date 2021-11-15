@@ -12,10 +12,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -24,6 +26,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class register_pw_activity extends AppCompatActivity {
     private ImageButton back_button;
@@ -33,6 +36,7 @@ public class register_pw_activity extends AppCompatActivity {
     private String accountAddress="";
     boolean address_check;
     private CheckBox show_pw_check;
+    private TextView notice;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,8 @@ public class register_pw_activity extends AppCompatActivity {
         gender = getIntent().getExtras().getString("gender");
         birth = getIntent().getExtras().getString("birth");
         IP_ADDRESS = ((databaseIP)getApplication()).getIP_Address();
+        notice = (TextView) findViewById(R.id.register_pw_notice);
+        int red_color = ContextCompat.getColor(this,R.color.red);
         userPW = (EditText) findViewById(R.id.register_userPW);
 
         show_pw_check = (CheckBox) findViewById(R.id.register_pw_show_check);
@@ -67,24 +73,28 @@ public class register_pw_activity extends AppCompatActivity {
         register_button.setOnClickListener(new View.OnClickListener() { //회원가입 완료 버튼 선언 및 클릭 이벤트
             @Override
             public void onClick(View v) {
-                accountAddress = AccountAddress(IP_ADDRESS);
-                Handler handler =  new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(userPW.getText().toString().equals("")){
-                            Toast.makeText(register_pw_activity.this,
-                                    "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                        }else if(address_check){
-                            Register register = new Register();
-                            register.execute("http://" + IP_ADDRESS + "/bank/register.php",userID,
-                                    userPW.getText().toString(),Name,gender,email,birth,accountAddress);
-                        }else{
-                            Toast.makeText(register_pw_activity.this,
-                                    "생성된 계좌가 중복되어 다시 한번 눌러주세요.", Toast.LENGTH_SHORT).show();
+                if (checkPwForm(userPW.getText().toString())) {
+                    accountAddress = AccountAddress(IP_ADDRESS);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (userPW.getText().toString().equals("")) {
+                                Toast.makeText(register_pw_activity.this,
+                                        "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            } else if (address_check) {
+                                Register register = new Register();
+                                register.execute("http://" + IP_ADDRESS + "/bank/register.php", userID,
+                                        userPW.getText().toString(), Name, gender, email, birth, accountAddress);
+                            } else {
+                                Toast.makeText(register_pw_activity.this,
+                                        "생성된 계좌가 중복되어 다시 한번 눌러주세요.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                },300);
+                    }, 300);
+                }else{
+                  notice.setTextColor(red_color);
+                }
             }
         });
 
@@ -251,5 +261,10 @@ public class register_pw_activity extends AppCompatActivity {
             }
             progressDialog.dismiss();
         }
+    }
+    public boolean checkPwForm(String pw){
+        String patten = "^[a-zA-Z0-9!?]{8,20}$";
+        boolean result = Pattern.matches(patten,pw);
+        return result;
     }
 }

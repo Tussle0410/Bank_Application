@@ -4,15 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -20,11 +24,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 public class register_id_activity extends AppCompatActivity {
     private Button next_button; 
     private ImageButton back_button;
     private EditText ID;
+    private TextView notice;
     private String IP_Address;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,8 +38,9 @@ public class register_id_activity extends AppCompatActivity {
         setContentView(R.layout.register_id_page);
 
         IP_Address = ((databaseIP)getApplication()).getIP_Address();        //IP 주소 가져오기
+        int red_color = ContextCompat.getColor(this,R.color.red);
+        notice = (TextView) findViewById(R.id.register_id_notice);
         ID = (EditText)findViewById(R.id.register_userID);
-
         back_button = (ImageButton) findViewById(R.id.register_id_back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +57,12 @@ public class register_id_activity extends AppCompatActivity {
                     Toast.makeText(register_id_activity.this,
                             "아이디를 입력해주세요",Toast.LENGTH_SHORT).show();
                 }else {
-                    ID_Check id_check = new ID_Check();         //데이터베이스 동일한 아이디 있나 확인 클래스 선언 및 실행
-                    id_check.execute("http://" + IP_Address + "/bank/regCheckID.php", ID.getText().toString());
+                    if (checkIdForm(ID.getText().toString())) {
+                        ID_Check id_check = new ID_Check();         //데이터베이스 동일한 아이디 있나 확인 클래스 선언 및 실행
+                        id_check.execute("http://" + IP_Address + "/bank/regCheckID.php", ID.getText().toString());
+                    }else{
+                        notice.setTextColor(red_color);
+                    }
                 }
             }
         });
@@ -129,5 +140,11 @@ public class register_id_activity extends AppCompatActivity {
             }
             progressDialog.dismiss();
         }
+    }
+    public boolean checkIdForm(String id){
+        String patten = "^[a-zA-Z0-9!?]{6,12}";
+        boolean result = Pattern.matches(patten,id);
+        System.out.println("발동");
+        return result;
     }
 }

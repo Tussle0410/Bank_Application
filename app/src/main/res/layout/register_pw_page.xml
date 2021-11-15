@@ -51,10 +51,16 @@
         android:textSize="15sp"
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"/>
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="5"
+        android:text="대소문자,숫자,특수문자(!,?)을 사용한  8-20글자만 가능합니다."
+        android:fontFamily="@font/login_font"
+        android:textSize="15sp"
+        android:id="@+id/register_pw_notice"
+        android:gravity="bottom"
+        android:paddingLeft="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -63,6 +69,7 @@
         android:layout_margin="10dp"
         android:hint="사용할 비밀번호를 입력해주세요."
         android:paddingLeft="10dp"
+        android:maxLength="20"
         android:inputType="textPassword"
         android:fontFamily="@font/login_font"
         android:background="@drawable/login_edit_button_border"/>
