@@ -38,9 +38,10 @@ public class remittance_history_loan_fragment extends Fragment {
     RecyclerView loan_recycler;
     RecyclerView.LayoutManager loan_layoutManager;
     remittance_history_Adapter loan_adapter;
-    String JsonString, IP_Address,OrderBy="transactionDate";
+    String JsonString,addressJson, IP_Address,OrderBy="transactionDate";
     Bundle Info;
     View view;
+    Boolean addressCheck;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -259,6 +260,91 @@ public class remittance_history_loan_fragment extends Fragment {
                 }
             } catch (Exception e) {
                 Log.d("PHP", "에러발생 : " + e);
+            }
+        }
+    }
+    public class addressCheck extends AsyncTask<String,Void,String>{
+        ProgressDialog progressDialog;
+        String errMsg;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(view.getContext(),"Please Wait",null,
+                    true,true);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String databaseUrl = strings[0];
+            String ID = strings[1];
+            String productionName = strings[2];
+            String postValue = "ID="+ID + "&productionName=" + productionName;
+            try {
+                URL url = new URL(databaseUrl);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postValue.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int httpResponseCode = httpURLConnection.getResponseCode();
+                InputStream inputStream;
+                if(httpResponseCode == HttpURLConnection.HTTP_OK){
+                    inputStream = httpURLConnection.getInputStream() ;
+                }else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while((line=bufferedReader.readLine())!=null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                return sb.toString();
+            }catch (Exception e){
+                errMsg = e.toString();
+                return errMsg;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals("fail")){
+                addressCheck = false;
+                addressName.setText("계좌가 존재하지 않습니다.");
+            }else{
+                addressCheck = true;
+                addressJson=result;
+                getAddressInfo();
+            }
+            progressDialog.dismiss();
+        }
+        protected void getAddressInfo(){
+            String Tag_Json = "info";
+            String Tag_Address = "address";
+            String Tag_Money = "money";
+            String Tag_Name = "name";
+            try {
+                JSONObject jsonObject = new JSONObject(addressJson);
+                JSONArray jsonArray = jsonObject.getJSONArray(Tag_Json);
+                JSONObject value = jsonArray.getJSONObject(0);
+            }catch (Exception e){
+                Log.d("PHP", "오류발생: " + e);
             }
         }
     }
