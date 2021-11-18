@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public class remittance_history_activity extends AppCompatActivity {
@@ -32,31 +33,52 @@ public class remittance_history_activity extends AppCompatActivity {
         deposit_bundle.putString("Address",getIntent().getExtras().getString("Address"));
         remittance_history_deposit_fragment.setArguments(deposit_bundle);
         remittance_history_loan_fragment = new remittance_history_loan_fragment();
+        int mainColor = ContextCompat.getColor(this,R.color.main_color);
+        int grayColor = ContextCompat.getColor(this,R.color.gray);
         Bundle loan_bundle = new Bundle();
-        deposit_bundle.putString("addressName",getIntent().getExtras().getString("addressName"));
-        deposit_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
-        deposit_bundle.putString("Money",getIntent().getExtras().getString("Money"));
-        deposit_bundle.putString("Address",getIntent().getExtras().getString("Address"));
+        loan_bundle.putString("ID",getIntent().getExtras().getString("ID"));
         remittance_history_loan_fragment.setArguments(loan_bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.remittance_history_frame,
                 remittance_history_deposit_fragment).commit();
+        saving = (Button)findViewById(R.id.remittance_history_savings_button);
+        funding = (Button)findViewById(R.id.remittance_history_funding_button);
         deposit = (Button)findViewById(R.id.remittance_history_deposit_button);
+        loan = (Button) findViewById(R.id.remittance_history_loan_button);
         deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for(Fragment fragment : getSupportFragmentManager().getFragments()){
                     if(fragment.isVisible()){
                         if(!(fragment instanceof remittance_history_deposit_fragment)){
-                                getSupportFragmentManager().beginTransaction().replace(R.id.remittance_history_frame,
+                            deposit.setTextColor(mainColor);
+                            funding.setTextColor(grayColor);
+                            loan.setTextColor(grayColor);
+                            saving.setTextColor(grayColor);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.remittance_history_frame,
                                         remittance_history_deposit_fragment).commit();
                         }
                     }
                 }
             }
         });
-        saving = (Button)findViewById(R.id.remittance_history_savings_button);
-        funding = (Button)findViewById(R.id.remittance_history_funding_button);
-        loan = (Button)findViewById(R.id.remittance_history_loan_button);
+        loan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    if (fragment.isVisible()) {
+                        if (!(fragment instanceof remittance_history_loan_fragment)) {
+                            loan.setTextColor(mainColor);
+                            funding.setTextColor(grayColor);
+                            deposit.setTextColor(grayColor);
+                            saving.setTextColor(grayColor);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.remittance_history_frame,
+                                    remittance_history_loan_fragment).commit();
+                        }
+                    }
+                }
+            }
+        });
+
 
     }
 }

@@ -150,6 +150,7 @@ public class nav_home_fragment extends Fragment {
                 history_intent.putExtra("Address_hyphen",address_builder.toString());
                 history_intent.putExtra("Money",amount.getText());
                 history_intent.putExtra("Address",Info.getString("Address"));
+                history_intent.putExtra("ID",Info.getString("ID"));
                 startActivity(history_intent);
             }
         });

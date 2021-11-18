@@ -47,24 +47,24 @@ public class remittance_history_deposit_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.remittance_history_deposit_page, container, false);
+        view = inflater.inflate(R.layout.remittance_history_fragment_page, container, false);
         int text_color = ContextCompat.getColor(view.getContext(), R.color.history_text);
         int black_color = ContextCompat.getColor(view.getContext(), R.color.black);
         int white_color = ContextCompat.getColor(view.getContext(),R.color.white);
         int solid_color = ContextCompat.getColor(view.getContext(),R.color.history_solid);
         Info = getArguments();
         IP_Address = ((databaseIP) getActivity().getApplication()).getIP_Address();
-        deposit_recycler = (RecyclerView) view.findViewById(R.id.deposit_recycleView);  //RecycleView 설정
+        deposit_recycler = (RecyclerView) view.findViewById(R.id.history_recycleView);  //RecycleView 설정
         mArrayList = new ArrayList<>();
         InitRecycleView();
         getHistoryExecute("7");
-        addressName = (TextView) view.findViewById(R.id.history_deposit_addressName);   //레이아웃 요소 설정
+        addressName = (TextView) view.findViewById(R.id.history_addressName);   //레이아웃 요소 설정
         addressName.setText(Info.getString("addressName"));
-        money = (TextView) view.findViewById(R.id.history_deposit_money);
+        money = (TextView) view.findViewById(R.id.history_money);
         money.setText(Info.getString("Money"));
-        address = (TextView) view.findViewById(R.id.history_deposit_address);
+        address = (TextView) view.findViewById(R.id.history_address);
         address.setText(Info.getString("Address_hyphen"));
-        weekend = (Button) view.findViewById(R.id.deposit_weekend);//거래내역 기준 변경
+        weekend = (Button) view.findViewById(R.id.history_weekend);//거래내역 기준 변경
         weekend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +79,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        month = (Button) view.findViewById(R.id.deposit_month);
+        month = (Button) view.findViewById(R.id.history_month);
         month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        sixMonth = (Button) view.findViewById(R.id.deposit_six_month);
+        sixMonth = (Button) view.findViewById(R.id.history_six_month);
         sixMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +109,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        year = (Button) view.findViewById(R.id.deposit_year);
+        year = (Button) view.findViewById(R.id.history_year);
         year.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        all = (Button) view.findViewById(R.id.deposit_all);
+        all = (Button) view.findViewById(R.id.history_all);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +139,7 @@ public class remittance_history_deposit_fragment extends Fragment {
                 }
             }
         });
-        orderBy = (Button) view.findViewById(R.id.deposit_orderBy);
+        orderBy = (Button) view.findViewById(R.id.history_orderBy);
         orderBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

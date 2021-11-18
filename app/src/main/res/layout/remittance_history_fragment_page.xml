@@ -10,7 +10,7 @@
         android:weightSum="100"
         android:background="#BFEFFF">
         <TextView
-            android:id="@+id/history_deposit_addressName"
+            android:id="@+id/history_addressName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
@@ -34,14 +34,14 @@
                 android:textColor="@color/black"
                 android:gravity="left|center_vertical"
                 android:textSize="25sp"
-                android:id="@+id/history_deposit_address"/>
+                android:id="@+id/history_address"/>
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="15"
                 android:background="#00ff0000"
                 android:src="@drawable/remittance_bankname_icon"
-                android:id="@+id/history_deposit_select"/>
+                android:id="@+id/history_select"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:textSize="22sp"
                 android:textColor="@color/main_color"
                 android:gravity="right|center_vertical"
-                android:id="@+id/history_deposit_money"/>
+                android:id="@+id/history_money"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -92,7 +92,7 @@
             android:text="1주일"
             android:textColor="@color/history_text"
             android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_weekend"/>
+            android:id="@+id/history_weekend"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -102,7 +102,7 @@
             android:text="1개월"
             android:textColor="@color/black"
             android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_month"/>
+            android:id="@+id/history_month"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -113,7 +113,7 @@
             android:textSize="12sp"
             android:textColor="@color/black"
             android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_six_month"/>
+            android:id="@+id/history_six_month"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -123,7 +123,7 @@
             android:text="1년"
             android:textColor="@color/black"
             android:fontFamily="@font/login_font"
-            android:id="@+id/deposit_year" />
+            android:id="@+id/history_year" />
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -134,7 +134,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/login_font"
             android:layout_marginRight="5dp"
-            android:id="@+id/deposit_all" />
+            android:id="@+id/history_all" />
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
@@ -145,7 +145,7 @@
         android:background="#00ff0000"
         android:fontFamily="@font/login_font"
         android:textColor="@color/black"
-        android:id="@+id/deposit_orderBy"/>
+        android:id="@+id/history_orderBy"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -153,5 +153,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="1000dp"
-        android:id="@+id/deposit_recycleView"/>
+        android:id="@+id/history_recycleView"/>
 </LinearLayout>

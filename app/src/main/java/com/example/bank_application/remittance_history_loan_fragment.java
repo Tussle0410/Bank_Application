@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class remittance_history_loan_fragment extends Fragment {
     RecyclerView loan_recycler;
     RecyclerView.LayoutManager loan_layoutManager;
     remittance_history_Adapter loan_adapter;
-    String JsonString,addressJson, IP_Address,OrderBy="transactionDate";
+    String JsonString,addressJson, stringAddress,IP_Address,OrderBy="transactionDate";
     Bundle Info;
     View view;
     Boolean addressCheck;
@@ -46,120 +47,129 @@ public class remittance_history_loan_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.remittance_history_loan_page,container,false);
+        view = inflater.inflate(R.layout.remittance_history_fragment_page,container,false);
         int text_color = ContextCompat.getColor(view.getContext(), R.color.history_text);
         int black_color = ContextCompat.getColor(view.getContext(), R.color.black);
         int white_color = ContextCompat.getColor(view.getContext(),R.color.white);
         int solid_color = ContextCompat.getColor(view.getContext(),R.color.history_solid);
+        addressName = (TextView) view.findViewById(R.id.history_addressName);   //레이아웃 요소 설정
+        money = (TextView) view.findViewById(R.id.history_money);
+        address = (TextView) view.findViewById(R.id.history_address);
         Info = getArguments();
         IP_Address = ((databaseIP) getActivity().getApplication()).getIP_Address();
-        loan_recycler = (RecyclerView) view.findViewById(R.id.loan_recycleView);  //RecycleView 설정
-        mArrayList = new ArrayList<>();
-        InitRecycleView();
-        getHistoryExecute("7");
-        addressName = (TextView) view.findViewById(R.id.history_loan_addressName);   //레이아웃 요소 설정
-        addressName.setText(Info.getString("addressName"));
-        money = (TextView) view.findViewById(R.id.history_loan_money);
-        money.setText(Info.getString("Money"));
-        address = (TextView) view.findViewById(R.id.history_loan_address);
-        address.setText(Info.getString("Address_hyphen"));
-        weekend = (Button) view.findViewById(R.id.loan_weekend);//거래내역 기준 변경
-        weekend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (weekend.getCurrentTextColor()==black_color) {
-                    InitRecycleView();//RecycleView 초기화
-                    weekend = buttonSelectColorSet(weekend,solid_color,text_color);
-                    month=buttonBasicColorSet(month,white_color,black_color);
-                    sixMonth=buttonBasicColorSet(sixMonth,white_color,black_color);
-                    year=buttonBasicColorSet(year,white_color,black_color);
-                    all=buttonBasicColorSet(all,white_color,black_color);
-                    getHistoryExecute("7");
-                }
-            }
-        });
-        month = (Button) view.findViewById(R.id.deposit_month);
-        month.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (month.getCurrentTextColor()==black_color) {
-                    InitRecycleView();
-                    month = buttonSelectColorSet(month, solid_color, text_color);
-                    weekend = buttonBasicColorSet(weekend, white_color, black_color);
-                    sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
-                    year = buttonBasicColorSet(year, white_color, black_color);
-                    all = buttonBasicColorSet(all, white_color, black_color);
-                    getHistoryExecute("30");
-                }
-            }
-        });
-        sixMonth = (Button) view.findViewById(R.id.deposit_six_month);
-        sixMonth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sixMonth.getCurrentTextColor()==black_color) {
-                    InitRecycleView();
-                    sixMonth = buttonSelectColorSet(sixMonth, solid_color, text_color);
-                    month = buttonBasicColorSet(month, white_color, black_color);
-                    weekend = buttonBasicColorSet(weekend, white_color, black_color);
-                    year = buttonBasicColorSet(year, white_color, black_color);
-                    all = buttonBasicColorSet(all, white_color, black_color);
-                    getHistoryExecute("180");
-                }
-            }
-        });
-        year = (Button) view.findViewById(R.id.deposit_year);
-        year.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (year.getCurrentTextColor()==black_color) {
-                    InitRecycleView();
-                    year = buttonSelectColorSet(year, solid_color, text_color);
-                    month = buttonBasicColorSet(month, white_color, black_color);
-                    sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
-                    weekend = buttonBasicColorSet(weekend, white_color, black_color);
-                    all = buttonBasicColorSet(all, white_color, black_color);
-                    getHistoryExecute("360");
-                }
-            }
-        });
-        all = (Button) view.findViewById(R.id.deposit_all);
-        all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (all.getCurrentTextColor()==black_color) {
-                    InitRecycleView();
-                    all = buttonSelectColorSet(all, solid_color, text_color);
-                    month = buttonBasicColorSet(month, white_color, black_color);
-                    sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
-                    year = buttonBasicColorSet(year, white_color, black_color);
-                    weekend = buttonBasicColorSet(weekend, white_color, black_color);
-                    getHistoryExecute("3600");
-                }
-            }
-        });
-        orderBy = (Button) view.findViewById(R.id.loan_orderBy);
-        orderBy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String[] item = {"거래일자 순","거래금액 순"};
-                AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
-                dialog.setItems(item, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(which==0){
-                            OrderBy = "transactionDate";
-                            orderBy.setText("거래일자 순");
-                        } else if (which==1) {
-                            OrderBy = "money";
-                            orderBy.setText("거래금액 순");
-                        }
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-        });
+        historyAddressCheck historyAddressCheck = new historyAddressCheck();
+        historyAddressCheck.execute("http://" + IP_Address + "/bank/historyAddressCheck.php",Info.getString("ID"),"loan");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   if (addressCheck) {
+                       loan_recycler = (RecyclerView) view.findViewById(R.id.history_recycleView);  //RecycleView 설정
+                       mArrayList = new ArrayList<>();
+                       InitRecycleView();
+                       getHistoryExecute("7");
+                       weekend = (Button) view.findViewById(R.id.history_weekend);//거래내역 기준 변경
+                       weekend.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               if (weekend.getCurrentTextColor() == black_color) {
+                                   InitRecycleView();//RecycleView 초기화
+                                   weekend = buttonSelectColorSet(weekend, solid_color, text_color);
+                                   month = buttonBasicColorSet(month, white_color, black_color);
+                                   sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
+                                   year = buttonBasicColorSet(year, white_color, black_color);
+                                   all = buttonBasicColorSet(all, white_color, black_color);
+                                   getHistoryExecute("7");
+                               }
+                           }
+                       });
+                       month = (Button) view.findViewById(R.id.history_month);
+                       month.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               if (month.getCurrentTextColor() == black_color) {
+                                   InitRecycleView();
+                                   month = buttonSelectColorSet(month, solid_color, text_color);
+                                   weekend = buttonBasicColorSet(weekend, white_color, black_color);
+                                   sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
+                                   year = buttonBasicColorSet(year, white_color, black_color);
+                                   all = buttonBasicColorSet(all, white_color, black_color);
+                                   getHistoryExecute("30");
+                               }
+                           }
+                       });
+                       sixMonth = (Button) view.findViewById(R.id.history_six_month);
+                       sixMonth.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               if (sixMonth.getCurrentTextColor() == black_color) {
+                                   InitRecycleView();
+                                   sixMonth = buttonSelectColorSet(sixMonth, solid_color, text_color);
+                                   month = buttonBasicColorSet(month, white_color, black_color);
+                                   weekend = buttonBasicColorSet(weekend, white_color, black_color);
+                                   year = buttonBasicColorSet(year, white_color, black_color);
+                                   all = buttonBasicColorSet(all, white_color, black_color);
+                                   getHistoryExecute("180");
+                               }
+                           }
+                       });
+                       year = (Button) view.findViewById(R.id.history_year);
+                       year.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               if (year.getCurrentTextColor() == black_color) {
+                                   InitRecycleView();
+                                   year = buttonSelectColorSet(year, solid_color, text_color);
+                                   month = buttonBasicColorSet(month, white_color, black_color);
+                                   sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
+                                   weekend = buttonBasicColorSet(weekend, white_color, black_color);
+                                   all = buttonBasicColorSet(all, white_color, black_color);
+                                   getHistoryExecute("360");
+                               }
+                           }
+                       });
+                       all = (Button) view.findViewById(R.id.history_all);
+                       all.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               if (all.getCurrentTextColor() == black_color) {
+                                   InitRecycleView();
+                                   all = buttonSelectColorSet(all, solid_color, text_color);
+                                   month = buttonBasicColorSet(month, white_color, black_color);
+                                   sixMonth = buttonBasicColorSet(sixMonth, white_color, black_color);
+                                   year = buttonBasicColorSet(year, white_color, black_color);
+                                   weekend = buttonBasicColorSet(weekend, white_color, black_color);
+                                   getHistoryExecute("3600");
+                               }
+                           }
+                       });
+                       orderBy = (Button) view.findViewById(R.id.history_orderBy);
+                       orderBy.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View v) {
+                               String[] item = {"거래일자 순", "거래금액 순"};
+                               AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
+                               dialog.setItems(item, new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       if (which == 0) {
+                                           OrderBy = "transactionDate";
+                                           orderBy.setText("거래일자 순");
+                                       } else if (which == 1) {
+                                           OrderBy = "money";
+                                           orderBy.setText("거래금액 순");
+                                       }
+                                       dialog.dismiss();
+                                   }
+                               });
+                               dialog.show();
+                           }
+                       });
+                   }
+               }
+           }, 500);
+
+
         return view;
     }
 
@@ -254,7 +264,7 @@ public class remittance_history_loan_fragment extends Fragment {
                     data.setReceiveName(value.getString(Tag_receiveName));
                     data.setMoney(value.getLong(Tag_money));
                     data.setDate(value.getString(Tag_date));
-                    data.setAddress(Info.getString("Address"));
+                    data.setAddress(stringAddress);
                     mArrayList.add(data);
                     loan_adapter.notifyDataSetChanged();
                 }
@@ -263,7 +273,7 @@ public class remittance_history_loan_fragment extends Fragment {
             }
         }
     }
-    public class addressCheck extends AsyncTask<String,Void,String>{
+    public class historyAddressCheck extends AsyncTask<String,Void,String>{
         ProgressDialog progressDialog;
         String errMsg;
 
@@ -324,6 +334,7 @@ public class remittance_history_loan_fragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            System.out.println(result);
             if(result.equals("fail")){
                 addressCheck = false;
                 addressName.setText("계좌가 존재하지 않습니다.");
@@ -343,6 +354,14 @@ public class remittance_history_loan_fragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(addressJson);
                 JSONArray jsonArray = jsonObject.getJSONArray(Tag_Json);
                 JSONObject value = jsonArray.getJSONObject(0);
+                money.setText(value.getString(Tag_Money));
+                stringAddress = value.getString(Tag_Address);
+                StringBuilder address_hyphen = new StringBuilder(value.getString(Tag_Address));
+                address_hyphen.insert(3,"-");
+                address_hyphen.insert(8,"-");
+                address_hyphen.insert(13,"-");
+                address.setText(address_hyphen);
+                addressName.setText(value.getString(Tag_Name));
             }catch (Exception e){
                 Log.d("PHP", "오류발생: " + e);
             }
@@ -369,6 +388,6 @@ public class remittance_history_loan_fragment extends Fragment {
     }
     public void getHistoryExecute(String days){
         getHistory getHistory = new getHistory();
-        getHistory.execute("http://" + IP_Address + "/bank/getHistory.php", Info.getString("Address"),days,OrderBy);
+        getHistory.execute("http://" + IP_Address + "/bank/getHistory.php", stringAddress,days,OrderBy);
     }
 }
