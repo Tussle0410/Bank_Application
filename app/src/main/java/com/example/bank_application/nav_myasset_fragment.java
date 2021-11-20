@@ -1,9 +1,12 @@
 package com.example.bank_application;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.audiofx.AudioEffect;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,12 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class nav_myasset_fragment extends Fragment {
@@ -30,13 +39,11 @@ public class nav_myasset_fragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_nav_myasset_page,container,false);
         setPieChart();
-
-
         return view;
     }
     private ArrayList<PieEntry> pieChart_setDate(){     //파이 그래프 데이터 적용 함수
         ArrayList<PieEntry> data = new ArrayList<>();
-        data.add(new PieEntry(1000000f,"입출금"));
+        data.add(new PieEntry(1000000,"입출금"));
         data.add(new PieEntry(1000000f,"예적금"));
         data.add(new PieEntry(1000000f,"대출"));
         data.add(new PieEntry(1000000f,"펀드"));
@@ -70,5 +77,79 @@ public class nav_myasset_fragment extends Fragment {
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setData(pieData);
         pieChart.invalidate();                  //파이 그래프 활성화화
+    }
+    protected class moneyInfo extends AsyncTask<String,Void,String>{
+        ProgressDialog progressDialog;
+        String errMsg;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog  = ProgressDialog.show(view.getContext(),"Please Wait",null,
+                    true,true);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String dataBaseUrl = strings[0];
+            String ID = strings[1];
+            String postValue = "ID=" + ID;
+            try {
+                URL url = new URL(dataBaseUrl);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postValue.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int httpRespondCode = httpURLConnection.getResponseCode();
+                InputStream inputStream;
+                if(httpRespondCode == HttpURLConnection.HTTP_OK){
+                    inputStream = httpURLConnection.getInputStream();
+                }else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line;
+                StringBuilder sb = new StringBuilder();
+                while((line=bufferedReader.readLine())!=null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                return sb.toString();
+            }catch (Exception e){
+                errMsg = e.toString();
+                return errMsg;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            getInfo(result);
+
+        }
+        protected void getInfo(String JsonString){
+            String Tag_JSON = "info";
+            String Tag_Money = "money";
+            String Tag_kinds = "kinds";
+            try {
+
+            }catch (Exception e){
+                Log.d("PHP","에러발생 : " + e);
+            }
+        }
     }
 }

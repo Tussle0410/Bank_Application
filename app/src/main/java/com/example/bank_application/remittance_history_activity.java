@@ -31,13 +31,15 @@ public class remittance_history_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) { finish(); }});
         remittance_history_deposit_fragment = new remittance_history_deposit_fragment();
+        remittance_history_loan_fragment = new remittance_history_loan_fragment();
+        remittance_history_savings_fragment = new remittance_history_savings_fragment();
+        remittance_history_funding_fragment = new remittance_history_funding_fragment();
         Bundle deposit_bundle = new Bundle();
         deposit_bundle.putString("addressName",getIntent().getExtras().getString("addressName"));
         deposit_bundle.putString("Address_hyphen",getIntent().getExtras().getString("Address_hyphen"));
         deposit_bundle.putString("Money",getIntent().getExtras().getString("Money"));
         deposit_bundle.putString("Address",getIntent().getExtras().getString("Address"));
         remittance_history_deposit_fragment.setArguments(deposit_bundle);
-        remittance_history_loan_fragment = new remittance_history_loan_fragment();
         Bundle loan_bundle = new Bundle();
         loan_bundle.putString("ID",getIntent().getExtras().getString("ID"));
         remittance_history_loan_fragment.setArguments(loan_bundle);
