@@ -23,12 +23,26 @@ import java.util.ArrayList;
 
 public class nav_myasset_fragment extends Fragment {
     PieChart pieChart;
+    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_nav_myasset_page,container,false);
+        view = inflater.inflate(R.layout.bottom_nav_myasset_page,container,false);
+        setPieChart();
 
+
+        return view;
+    }
+    private ArrayList<PieEntry> pieChart_setDate(){     //파이 그래프 데이터 적용 함수
+        ArrayList<PieEntry> data = new ArrayList<>();
+        data.add(new PieEntry(1000000f,"입출금"));
+        data.add(new PieEntry(1000000f,"예적금"));
+        data.add(new PieEntry(1000000f,"대출"));
+        data.add(new PieEntry(1000000f,"펀드"));
+        return data;
+    }
+    public void setPieChart(){
         int[] ColorArray = {ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color1),
                 ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color2),
                 ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color3),
@@ -56,15 +70,5 @@ public class nav_myasset_fragment extends Fragment {
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setData(pieData);
         pieChart.invalidate();                  //파이 그래프 활성화화
-
-        return view;
-    }
-    private ArrayList<PieEntry> pieChart_setDate(){     //파이 그래프 데이터 적용 함수
-        ArrayList<PieEntry> data = new ArrayList<>();
-        data.add(new PieEntry(1000000f,"입출금"));
-        data.add(new PieEntry(1000000f,"예적금"));
-        data.add(new PieEntry(1000000f,"대출"));
-        data.add(new PieEntry(1000000f,"펀드"));
-        return data;
     }
 }
