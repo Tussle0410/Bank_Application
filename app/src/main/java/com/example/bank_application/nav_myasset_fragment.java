@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,9 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,30 +37,43 @@ import java.util.ArrayList;
 public class nav_myasset_fragment extends Fragment {
     PieChart pieChart;
     View view;
+    TextView name,assetName,deposit,savings,loan,funding,total_money;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_nav_myasset_page,container,false);
-        setPieChart();
+        String IP_ADDRESS = ((databaseIP) getActivity().getApplication()).getIP_Address();
+        Bundle Info = getArguments();
+        name = (TextView) view.findViewById(R.id.myAsset_name);             //TextView 설정
+        assetName = (TextView) view.findViewById(R.id.myAsset_asset_name);
+        deposit = (TextView) view.findViewById(R.id.myAsset_deposit_money);
+        savings = (TextView) view.findViewById(R.id.myAsset_savings_money);
+        loan = (TextView) view.findViewById(R.id.myAsset_loan_money);
+        funding = (TextView) view.findViewById(R.id.myAsset_funding_money);
+        total_money = (TextView) view.findViewById(R.id.myAsset_total_money);
+        name.setText(Info.getString("Name"));
+        assetName.setText(Info.getString("Name"));
+        moneyInfo moneyInfo = new moneyInfo();
+        moneyInfo.execute("http://" + IP_ADDRESS + "/bank/getMyasset.php",Info.getString("ID"));
         return view;
     }
-    private ArrayList<PieEntry> pieChart_setDate(){     //파이 그래프 데이터 적용 함수
+    private ArrayList<PieEntry> pieChart_setDate(int deposit,int savings,int loan,int funding){     //파이 그래프 데이터 적용 함수
         ArrayList<PieEntry> data = new ArrayList<>();
-        data.add(new PieEntry(1000000,"입출금"));
-        data.add(new PieEntry(1000000f,"예적금"));
-        data.add(new PieEntry(1000000f,"대출"));
-        data.add(new PieEntry(1000000f,"펀드"));
+        data.add(new PieEntry(deposit,"입출금"));
+        data.add(new PieEntry(savings,"예적금"));
+        data.add(new PieEntry(loan,"대출"));
+        data.add(new PieEntry(funding,"펀드"));
         return data;
     }
-    public void setPieChart(){
+    public void setPieChart(ArrayList<PieEntry> list){
         int[] ColorArray = {ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color1),
                 ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color2),
                 ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color3),
                 ContextCompat.getColor(view.getContext(),R.color.myasset_piechart_color4)};     //파이 그래프 요소 색
 
-        pieChart = (PieChart) view.findViewById(R.id.myasset_chart);        //파이 그래프 선언
-        PieDataSet pieDataSet = new PieDataSet(pieChart_setDate(),"");  //파이 데이터 셋 선언
+        pieChart = (PieChart) view.findViewById(R.id.myAsset_chart);        //파이 그래프 선언
+        PieDataSet pieDataSet = new PieDataSet(list,"");  //파이 데이터 셋 선언
         pieDataSet.setColors(ColorArray);
         pieDataSet.setSliceSpace(3);            //요소 별 빈 공간
         PieData pieData = new PieData(pieDataSet);
@@ -139,14 +156,41 @@ public class nav_myasset_fragment extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             getInfo(result);
+            progressDialog.dismiss();
 
         }
         protected void getInfo(String JsonString){
-            String Tag_JSON = "info";
+            String Tag_JSON = "myAsset";
             String Tag_Money = "money";
             String Tag_kinds = "kinds";
+            int deposit_money=0 ,loan_money=0,funding_money=0,savings_money=0;
             try {
-
+                JSONObject jsonObject = new JSONObject(JsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject value = jsonArray.getJSONObject(i);
+                    if(value.getString(Tag_kinds).equals("deposit")){
+                        deposit_money+=value.getInt(Tag_Money);
+                    }else if(value.getString(Tag_kinds).equals("savings")){
+                        savings_money+=value.getInt(Tag_Money);
+                    }else if(value.getString(Tag_kinds).equals("loan")){
+                        loan_money+=value.getInt(Tag_Money);
+                    }else if(value.getString(Tag_kinds).equals("funding")){
+                        funding_money+=value.getInt(Tag_Money);
+                    }
+                }
+                deposit.setText(String.valueOf(deposit_money));
+                savings.setText(String.valueOf(savings_money));
+                loan.setText(String.valueOf(loan_money));
+                funding.setText(String.valueOf(funding_money));
+                int total = deposit_money+savings_money+funding_money-loan_money;
+                if(total<0){
+                    int red = ContextCompat.getColor(view.getContext(),R.color.red);
+                    total_money.setTextColor(red);
+                }
+                total_money.setText(String.valueOf(total));
+                ArrayList<PieEntry> list = pieChart_setDate(deposit_money,savings_money,loan_money,funding_money);
+                setPieChart(list);
             }catch (Exception e){
                 Log.d("PHP","에러발생 : " + e);
             }

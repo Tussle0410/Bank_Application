@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="40"
-                android:id="@+id/myasset_name"
+                android:id="@+id/myAsset_name"
                 android:layout_marginLeft="15dp"
                 android:textSize="35sp"
                 android:textColor="@color/main_color"
@@ -69,7 +69,7 @@
             android:textSize="35sp"/>
     </LinearLayout>
             <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/myasset_chart"
+                android:id="@+id/myAsset_chart"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"/>
             <LinearLayout
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:id="@+id/myasset_deposit_withdrawal"
+                    android:id="@+id/myAsset_deposit_money"
                     android:textColor="#008080"
                     android:gravity="right|center_vertical"
                     android:fontFamily="@font/login_font"
@@ -134,7 +134,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:id="@+id/myasset_savings_money"
+                    android:id="@+id/myAsset_savings_money"
                     android:textColor="#008080"
                     android:gravity="right|center_vertical"
                     android:fontFamily="@font/login_font"
@@ -173,7 +173,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:id="@+id/myasset_loan"
+                    android:id="@+id/myAsset_loan_money"
                     android:textColor="#FF0000"
                     android:gravity="right|center_vertical"
                     android:fontFamily="@font/login_font"
@@ -212,7 +212,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
-                    android:id="@+id/myasset_funding_money"
+                    android:id="@+id/myAsset_funding_money"
                     android:textColor="#008080"
                     android:gravity="right|center_vertical"
                     android:fontFamily="@font/login_font"
@@ -249,10 +249,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="50"
-                        android:id="@+id/myasset_asset_name"
+                        android:id="@+id/myAsset_asset_name"
                         android:gravity="right|bottom"
                         android:fontFamily="@font/login_font"
-                        android:text="기강기간"
                         android:textColor="@color/black"
                         android:textSize="20sp"/>
                     <TextView
@@ -278,6 +277,7 @@
                         android:layout_weight="70"
                         android:fontFamily="@font/login_font"
                         android:textSize="30sp"
+                        android:id="@+id/myAsset_total_money"
                         android:gravity="right|center_vertical"
                         android:textColor="#008080"/>
                     <TextView

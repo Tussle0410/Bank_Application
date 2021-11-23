@@ -50,10 +50,12 @@ public class remittance_history_loan_fragment extends Fragment {
         view = inflater.inflate(R.layout.remittance_history_fragment_page,container,false);
         int text_color = ContextCompat.getColor(view.getContext(), R.color.history_text);
         int black_color = ContextCompat.getColor(view.getContext(), R.color.black);
+        int red_color = ContextCompat.getColor(view.getContext(),R.color.red);
         int white_color = ContextCompat.getColor(view.getContext(),R.color.white);
         int solid_color = ContextCompat.getColor(view.getContext(),R.color.history_solid);
         addressName = (TextView) view.findViewById(R.id.history_addressName);   //레이아웃 요소 설정
         money = (TextView) view.findViewById(R.id.history_money);
+        money.setTextColor(red_color);
         address = (TextView) view.findViewById(R.id.history_address);
         Info = getArguments();
         IP_Address = ((databaseIP) getActivity().getApplication()).getIP_Address();
@@ -288,8 +290,8 @@ public class remittance_history_loan_fragment extends Fragment {
         protected String doInBackground(String... strings) {
             String databaseUrl = strings[0];
             String ID = strings[1];
-            String productionName = strings[2];
-            String postValue = "ID="+ID + "&productionName=" + productionName;
+            String Kinds = strings[2];
+            String postValue = "ID="+ID + "&Kinds=" + Kinds;
             try {
                 URL url = new URL(databaseUrl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

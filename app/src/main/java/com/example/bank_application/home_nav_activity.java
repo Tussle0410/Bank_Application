@@ -44,11 +44,14 @@ public class home_nav_activity extends AppCompatActivity {
         Gender = getIntent().getExtras().getString("Gender");
         Email = getIntent().getExtras().getString("Email");
         addressMainKinds = getIntent().getExtras().getString("addressMainKinds");
-
         nav_home_fragment = new nav_home_fragment();                            //바텀 네비게이션 클릭시 이동할 Fragment 선언
         nav_financial_products_fragment = new nav_financial_products_fragment();
         nav_mybank_fragment = new nav_mybank_fragment();
         nav_myasset_fragment = new nav_myasset_fragment();
+        Bundle myAssetBundle = new Bundle();
+        myAssetBundle.putString("Name",Name);
+        myAssetBundle.putString("ID",ID);
+        nav_myasset_fragment.setArguments(myAssetBundle);
         getAddressInfo getAddressInfo = new getAddressInfo();
         getAddressInfo.execute("http://"+IP_ADDRESS+"/bank/getAddress.php",ID);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.home_bottom_nav);

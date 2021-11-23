@@ -288,8 +288,8 @@ public class remittance_history_funding_fragment extends Fragment {
         protected String doInBackground(String... strings) {
             String databaseUrl = strings[0];
             String ID = strings[1];
-            String productionName = strings[2];
-            String postValue = "ID="+ID + "&productionName=" + productionName;
+            String Kinds = strings[2];
+            String postValue = "ID="+ID + "&Kinds=" + Kinds;
             try {
                 URL url = new URL(databaseUrl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
