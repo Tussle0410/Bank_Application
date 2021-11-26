@@ -52,6 +52,12 @@ public class home_nav_activity extends AppCompatActivity {
         myAssetBundle.putString("Name",Name);
         myAssetBundle.putString("ID",ID);
         nav_myasset_fragment.setArguments(myAssetBundle);
+        Bundle myBankBundle = new Bundle();
+        myBankBundle.putString("ID",ID);
+        myBankBundle.putString("Name",Name);
+        myBankBundle.putString("Birth",Birth);
+        myBankBundle.putString("Email",Email);
+        nav_mybank_fragment.setArguments(myBankBundle);
         getAddressInfo getAddressInfo = new getAddressInfo();
         getAddressInfo.execute("http://"+IP_ADDRESS+"/bank/getAddress.php",ID);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.home_bottom_nav);
