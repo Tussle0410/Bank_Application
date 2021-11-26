@@ -1,4 +1,5 @@
 # Bank_Application
+Java기반 Android Studio
 회원관리, 송출금, 내역관리 등등 기능을 가진 가상 은행 어플리케이션 
 
 1) WampServer를 이용하여 Mysql 형태에 데이터베이스를 형성한다.
