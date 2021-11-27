@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 public class nav_home_fragment extends Fragment {
@@ -45,24 +46,17 @@ public class nav_home_fragment extends Fragment {
     private String JsonString;
     private String IP_ADDRESS;
     private Bundle Info;
-    private String[] event_ImageUrl = {             // 이벤트 ViewPager Url 배열
-            "https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/11/04/15/29/coffee-beans-5712780_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/03/08/21/41/landscape-4913841_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/09/02/18/03/girl-5539094_1280.jpg",
-            "https://cdn.pixabay.com/photo/2014/03/03/16/15/mosque-279015_1280.jpg"};
-    private String[] financial_ImageUrl = {         // 금융상품 ViewPager Url 배열
-            "https://cdn.pixabay.com/photo/2020/11/04/15/29/coffee-beans-5712780_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/03/08/21/41/landscape-4913841_1280.jpg",
-            "https://cdn.pixabay.com/photo/2020/09/02/18/03/girl-5539094_1280.jpg",
-            "https://cdn.pixabay.com/photo/2014/03/03/16/15/mosque-279015_1280.jpg"};
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_nav_home_page,container,false);
         IP_ADDRESS = ((databaseIP)getActivity().getApplication()).getIP_Address();
-        Info = getArguments();
+        Info = getArguments();                              //Bundle 가져오기
+        ArrayList<String> eventList = Info.getStringArrayList("eventBanner");
+        ArrayList<String> financeList = Info.getStringArrayList("financeBanner");
+        String[] event_ImageUrl = eventList.toArray(new String[eventList.size()]);  // 이벤트 ViewPager Url 배열
+        String[] financial_ImageUrl = financeList.toArray(new String[financeList.size()]); // 금융상품 ViewPager Url 배열
         address = (TextView) view.findViewById(R.id.home_address);      //TextView 선언
         amount = (TextView) view.findViewById(R.id.home_amount);
         userName = (TextView) view.findViewById(R.id.home_userName); 

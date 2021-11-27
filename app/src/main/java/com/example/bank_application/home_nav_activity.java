@@ -1,17 +1,15 @@
 package com.example.bank_application;
 
-import android.app.Application;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,6 +22,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class home_nav_activity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -32,6 +31,7 @@ public class home_nav_activity extends AppCompatActivity {
     nav_myasset_fragment nav_myasset_fragment;
     nav_mybank_fragment nav_mybank_fragment;
     String ID, Name, Birth, Gender, Email, addressMainKinds, JsonString;
+    ArrayList<String> eventBanner , financeBanner;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +58,16 @@ public class home_nav_activity extends AppCompatActivity {
         myBankBundle.putString("Birth",Birth);
         myBankBundle.putString("Email",Email);
         nav_mybank_fragment.setArguments(myBankBundle);
-        getAddressInfo getAddressInfo = new getAddressInfo();
-        getAddressInfo.execute("http://"+IP_ADDRESS+"/bank/getAddress.php",ID);
+        httpConnect getBanner= new httpConnect();
+        getBanner.execute("http://"+IP_ADDRESS+"/bank/getBanner.php","banner");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                httpConnect getAddressInfo = new httpConnect();
+                getAddressInfo.execute("http://"+IP_ADDRESS+"/bank/getAddress.php","addressInfo",ID);
+            }
+        },300);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.home_bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -82,9 +90,10 @@ public class home_nav_activity extends AppCompatActivity {
             }
         });
     }
-    private class getAddressInfo extends AsyncTask<String, Void, String> {
+    private class httpConnect extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         String errMsg;
+        String kinds;
 
         @Override
         protected void onPreExecute() {
@@ -96,8 +105,14 @@ public class home_nav_activity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String databaseUrl = strings[0];
-            String userID = strings[1];
-            String PostValues = "userID=" + userID;
+            String PostValues = "";
+            if(strings[1].equals("addressInfo")) {
+                kinds = "addressInfo";
+                String userID = strings[2];
+                PostValues = "userID=" + userID;
+            }else if(strings[1].equals("banner")){
+                kinds = "banner";
+            }
             try {
                 URL url = new URL(databaseUrl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -142,12 +157,16 @@ public class home_nav_activity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             JsonString = result;
-            getResult();
+            if(kinds.equals("addressInfo")){
+                getAddressInfo();
+            }else if(kinds.equals("banner")){
+                getBanner();
+            }
             progressDialog.dismiss();
 
         }
 
-        protected void getResult() {
+        protected void getAddressInfo() {
             String Tag_JSON = "address";
             String Tag_Money = "Money";
             String Tag_Address = "Address";
@@ -167,12 +186,35 @@ public class home_nav_activity extends AppCompatActivity {
                 home_bundle.putInt("Limit",values.getInt(Tag_limit));
                 home_bundle.putInt("curLimit",values.getInt(Tag_cur_limit));
                 home_bundle.putString("addressName",values.getString(Tag_addressName));
+                home_bundle.putStringArrayList("eventBanner",eventBanner);
+                home_bundle.putStringArrayList("financeBanner",financeBanner);
                 nav_home_fragment.setArguments(home_bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.home_frame, nav_home_fragment).commit();//처음화면 설정
             }catch (Exception e){
                 Log.d("PHP","에러발생 " + e);
             }
 
+        }
+        protected void getBanner(){
+            String Tag_JSON = "banner";
+            String Tag_Route = "bannerRoute";
+            String Tag_kinds = "kinds";
+            eventBanner = new ArrayList<>();
+            financeBanner = new ArrayList<>();
+            try {
+                JSONObject jsonObject = new JSONObject(JsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(Tag_JSON);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject value = jsonArray.getJSONObject(i);
+                    if(value.getString(Tag_kinds).equals("event")){
+                        eventBanner.add(value.getString(Tag_Route));
+                    }else if(value.getString(Tag_kinds).equals("finance")){
+                        financeBanner.add(value.getString(Tag_Route));
+                    }
+                }
+            }catch (Exception e){
+                Log.d("PHP","에러발생 " + e);
+            }
         }
     }
 }
