@@ -1,24 +1,19 @@
 package com.example.bank_application;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class remittance_history_Adapter extends RecyclerView.Adapter<remittance_history_Adapter.CustomViewHolder> {
     private ArrayList<remittance_history_data> list = null;
-    private Activity context=null;
-    public remittance_history_Adapter(Activity context, ArrayList<remittance_history_data> list){
-        this.context = context;
+    private Activity activity=null;
+    public remittance_history_Adapter(Activity activity, ArrayList<remittance_history_data> list){
+        this.activity = activity;
         this.list = list;
     }
     class CustomViewHolder extends RecyclerView.ViewHolder {

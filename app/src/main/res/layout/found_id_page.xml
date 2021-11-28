@@ -47,7 +47,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:fontFamily="@font/login_font"
-        android:text="아디이 찾기에 필요합니다."
+        android:text="아이디 찾기에 필요합니다."
         android:textSize="15sp"
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"/>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:paddingLeft="15dp"
+            android:text="상품 이름"
+            android:gravity="bottom|left"
+            android:fontFamily="@font/login_font"
+            android:textSize="24sp"
+            android:id="@+id/financial_recycle_name"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:fontFamily="@font/login_font"
+            android:text="연 이자"
+            android:gravity="bottom|right"
+            android:textSize="20sp"
+            android:paddingRight="10dp"
+            android:textColor="@color/main_color"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:text="10.0"
+            android:gravity="bottom"
+            android:fontFamily="@font/login_font"
+            android:textSize="20sp"
+            android:textColor="@color/main_color"
+            android:id="@+id/financial_recycle_interestRate"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:text="%"
+            android:gravity="bottom"
+            android:textSize="20sp"
+            android:fontFamily="@font/login_font"
+            android:textColor="@color/main_color"/>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="410dp"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:weightSum="100">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:text="상품설명"
+        android:fontFamily="@font/login_font"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:textSize="17sp"
+        android:id="@+id/financial_recycle_description"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30"
+        android:text="12"
+        android:fontFamily="@font/login_font"
+        android:gravity="right"
+        android:paddingTop="10dp"
+        android:textSize="15sp"
+        android:id="@+id/financial_recycle_interestCycle"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:text="개월 기준"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:gravity="left"
+        android:fontFamily="@font/login_font"
+        android:textSize="15sp"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+
+</LinearLayout>
