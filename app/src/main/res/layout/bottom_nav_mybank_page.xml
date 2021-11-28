@@ -66,7 +66,7 @@
                     android:layout_weight="30"
                     android:layout_marginLeft="20dp"
                     android:gravity="left"
-                    android:text="이찬형"
+                    android:id="@+id/myBank_Name"
                     android:textColor="#1E90FF"
                     android:fontFamily="@font/login_font"
                     android:textSize="20sp"/>
@@ -95,7 +95,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="45"
                 android:layout_marginTop="10dp"
-                android:id="@+id/nav_mybank_profile_button"
+                android:id="@+id/nav_myBank_profile_button"
                 android:text="나의 정보 보기 > "
                 android:fontFamily="@font/login_font"
                 android:textColor="@color/gray"

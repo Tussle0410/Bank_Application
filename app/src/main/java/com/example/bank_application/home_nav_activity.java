@@ -58,6 +58,7 @@ public class home_nav_activity extends AppCompatActivity {
         myBankBundle.putString("Birth",Birth);
         myBankBundle.putString("Email",Email);
         nav_mybank_fragment.setArguments(myBankBundle);
+        Bundle financialBundle = new Bundle();
         httpConnect getBanner= new httpConnect();
         getBanner.execute("http://"+IP_ADDRESS+"/bank/getBanner.php","banner");
         Handler handler = new Handler();
@@ -66,6 +67,8 @@ public class home_nav_activity extends AppCompatActivity {
             public void run() {
                 httpConnect getAddressInfo = new httpConnect();
                 getAddressInfo.execute("http://"+IP_ADDRESS+"/bank/getAddress.php","addressInfo",ID);
+                financialBundle.putStringArrayList("financeBanner",financeBanner);
+                nav_financial_products_fragment.setArguments(financialBundle);
             }
         },300);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.home_bottom_nav);
