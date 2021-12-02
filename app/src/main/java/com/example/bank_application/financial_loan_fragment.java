@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,6 +28,9 @@ import java.util.ArrayList;
 public class financial_loan_fragment extends Fragment {
     private View view;
     private ArrayList<financial_data> mArrayList;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private financial_Adapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
