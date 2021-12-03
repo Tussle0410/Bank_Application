@@ -56,21 +56,22 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="50"
+        android:layout_weight="70"
         android:text="상품설명"
         android:fontFamily="@font/login_font"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:id="@+id/financial_recycle_description"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="30"
+        android:layout_weight="10"
         android:text="12"
         android:fontFamily="@font/login_font"
         android:gravity="right"
         android:paddingTop="10dp"
+        android:textColor="@color/main_color"
         android:textSize="15sp"
         android:id="@+id/financial_recycle_interestCycle"/>
     <TextView
@@ -82,6 +83,7 @@
         android:paddingLeft="5dp"
         android:gravity="left"
         android:fontFamily="@font/login_font"
+        android:textColor="@color/main_color"
         android:textSize="15sp"/>
 </LinearLayout>
     <LinearLayout

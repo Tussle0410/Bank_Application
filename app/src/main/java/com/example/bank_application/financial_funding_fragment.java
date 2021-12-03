@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -36,7 +37,22 @@ public class financial_funding_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.financial_funding_page,container,false);
+        String IP_ADDRESS = ((databaseIP)getActivity().getApplication()).getIP_Address();
+        recyclerView = (RecyclerView) view.findViewById(R.id.funding_recycleView);
+        mArrayList = new ArrayList<>();
+        InitRecycleView();
+        httpConnect httpConnect = new httpConnect();
+        httpConnect.execute("http://" + IP_ADDRESS + "/bank/getFinancial.php","funding");
+
         return view;
+    }
+    public void InitRecycleView() {
+        //RecycleView 초기화
+        mArrayList.clear();
+        layoutManager = new LinearLayoutManager(view.getContext());
+        adapter = new financial_Adapter(getActivity(), mArrayList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
     class httpConnect extends AsyncTask<String,Void,String> {
         ProgressDialog progressDialog;
@@ -106,8 +122,8 @@ public class financial_funding_fragment extends Fragment {
             progressDialog.dismiss();
         }
         protected void getProduction(){
-            String Tag_JSON= "production";
-            String Tag_name = "name";
+            String Tag_JSON= "financial";
+            String Tag_name = "productionName";
             String Tag_description = "description";
             String Tag_interestRate = "interestRate";
             String Tag_interestCycle = "interestCycle";
@@ -118,10 +134,11 @@ public class financial_funding_fragment extends Fragment {
                     JSONObject value = jsonArray.getJSONObject(i);
                     financial_data data = new financial_data();
                     data.setDescription(value.getString(Tag_description));
-                    data.setName(value.getString(value.getString(Tag_name)));
+                    data.setProductionName(value.getString(Tag_name));
                     data.setInterestCycle(value.getInt(Tag_interestCycle));
                     data.setInterestRate(value.getDouble(Tag_interestRate));
                     mArrayList.add(data);
+                    adapter.notifyDataSetChanged();
                 }
             }catch (Exception e){
                 Log.d("PHP","에러발생 " + e);

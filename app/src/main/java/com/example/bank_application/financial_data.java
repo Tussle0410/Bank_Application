@@ -3,7 +3,7 @@ package com.example.bank_application;
 import java.io.Serializable;
 
 public class financial_data implements Serializable {
-    String kinds,description,name;
+    String kinds,description,productionName;
     double interestRate;
     int interestCycle;
 
@@ -23,12 +23,12 @@ public class financial_data implements Serializable {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getProductionName() {
+        return productionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductionName(String productionName) {
+        this.productionName = productionName;
     }
 
     public double getInterestRate() {

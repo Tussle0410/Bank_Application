@@ -39,7 +39,7 @@ public class financial_Adapter extends RecyclerView.Adapter<financial_Adapter.Cu
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.name.setText(list.get(position).getName());
+        holder.name.setText(list.get(position).getProductionName());
         holder.description.setText(list.get(position).getDescription());
         holder.interestCycle.setText(String.valueOf(list.get(position).getInterestCycle()));
         holder.interestRate.setText(String.valueOf(list.get(position).getInterestRate()));
