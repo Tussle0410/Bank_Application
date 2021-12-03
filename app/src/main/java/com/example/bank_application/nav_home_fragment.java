@@ -1,6 +1,8 @@
 package com.example.bank_application;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -39,12 +43,12 @@ public class nav_home_fragment extends Fragment {
     private ViewPager2 event_viewPager,financial_viewPager;
     private LinearLayout event_indicator,financial_indicator;
     private DrawerLayout drawerLayout;
-    private TextView address,amount,userName;
+    private Switch balance_switch;
+    private TextView address,amount,userName,drawer_name;
     private View drawerView, view;
     private Button Transaction_history_button, remittance_button;
-    private ImageButton drawer_button,drawer_close_button,curMoney_button;
-    private String JsonString;
-    private String IP_ADDRESS;
+    private ImageButton drawer_button,drawer_close_button,curMoney_button,drawer_logoutButton;
+    private String JsonString,IP_ADDRESS;
     private Bundle Info;
     @Nullable
     @Override
@@ -59,7 +63,19 @@ public class nav_home_fragment extends Fragment {
         String[] financial_ImageUrl = financeList.toArray(new String[financeList.size()]); // 금융상품 ViewPager Url 배열
         address = (TextView) view.findViewById(R.id.home_address);      //TextView 선언
         amount = (TextView) view.findViewById(R.id.home_amount);
-        userName = (TextView) view.findViewById(R.id.home_userName); 
+        userName = (TextView) view.findViewById(R.id.home_userName);
+        balance_switch = (Switch) view.findViewById(R.id.home_balance_switch);
+        balance_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    getCurMoney getCurMoney = new getCurMoney();
+                    getCurMoney.execute("http://" + IP_ADDRESS + "getCurMoney.php",Info.getString("ID"));
+                }else{
+                    amount.setText("???");
+                }
+            }
+        });
         StringBuilder address_builder = new StringBuilder(Info.getString("Address"));   //계좌번호 형태로 변경
         address_builder.insert(3,"-");
         address_builder.insert(8,"-");
@@ -83,7 +99,10 @@ public class nav_home_fragment extends Fragment {
             }
         });
         drawerLayout = (DrawerLayout)view.findViewById(R.id.drawer_layout);        //drawer_layout 선언
+        drawer_name = (TextView)view.findViewById(R.id.drawer_name);
+        drawer_name.setText(Info.getString("Name"));
         drawer_close_button = (ImageButton) view.findViewById(R.id.drawer_close_button);    //drawer_layout 속에 버튼 선언
+        drawer_logoutButton = (ImageButton) view.findViewById(R.id.drawer_logout_button);
         drawerView = (View) view.findViewById(R.id.drawerView);                     //drawer_layout 안에 보여질 뷰 선언
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);       //끌어오기로 drawer_layout 나오는 이벤트 잠금
         DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -96,6 +115,12 @@ public class nav_home_fragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         drawerLayout.closeDrawer(drawerView);               //drawer_layout 나가기 버튼
+                    }
+                });
+                drawer_logoutButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        logoutAct();
                     }
                 });
             }
@@ -197,6 +222,25 @@ public class nav_home_fragment extends Fragment {
                 imageView.setImageDrawable(ContextCompat.getDrawable(view.getContext(),R.drawable.indicator_inactive));
             }
         }
+    }
+    public void logoutAct(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(view.getContext());
+        dialog.setTitle("로그아웃 하시겠습니까?");
+        dialog.setPositiveButton("로그아웃", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent login = new Intent(view.getContext(),login_activity.class);
+                getActivity().finishAffinity();
+                startActivity(login);
+            }
+        });
+        dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     protected class getCurMoney extends AsyncTask<String,Void,String>{
         ProgressDialog progressDialog;

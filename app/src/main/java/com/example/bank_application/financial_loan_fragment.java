@@ -113,7 +113,6 @@ public class financial_loan_fragment extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             JsonString = result;
-            System.out.println(result);
             if(result.equals("fail")){
                 Toast.makeText(view.getContext(), "상품이 없습니다.", Toast.LENGTH_SHORT).show();
             }else {

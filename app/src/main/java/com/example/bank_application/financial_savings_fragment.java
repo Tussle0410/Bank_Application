@@ -40,6 +40,7 @@ public class financial_savings_fragment extends Fragment {
         String IP_ADDRESS = ((databaseIP)getActivity().getApplication()).getIP_Address();
         recyclerView = (RecyclerView) view.findViewById(R.id.savings_recycleView);
         mArrayList = new ArrayList<>();
+        InitRecycleView();
         httpConnect httpConnect = new httpConnect();
         httpConnect.execute("http://" + IP_ADDRESS + "/bank/getFinancial.php","savings");
 
@@ -121,7 +122,7 @@ public class financial_savings_fragment extends Fragment {
             progressDialog.dismiss();
         }
         protected void getProduction(){
-            String Tag_JSON= "production";
+            String Tag_JSON= "financial";
             String Tag_name = "productionName";
             String Tag_description = "description";
             String Tag_interestRate = "interestRate";
