@@ -46,7 +46,7 @@ public class nav_home_fragment extends Fragment {
     private Switch balance_switch;
     private TextView address,amount,userName,drawer_name;
     private View drawerView, view;
-    private Button Transaction_history_button, remittance_button;
+    private Button Transaction_history_button, remittance_button,ATM,setting,inquiry;
     private ImageButton drawer_button,drawer_close_button,curMoney_button,drawer_logoutButton;
     private String JsonString,IP_ADDRESS;
     private Bundle Info;
