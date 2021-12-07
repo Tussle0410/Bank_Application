@@ -51,7 +51,7 @@ public class found_id_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean check=false;
-                if(birth.toString().charAt(4)=='-' & birth.toString().charAt('7')=='-'){
+                if(birth.getText().charAt(4)=='-' & birth.getText().charAt(7)=='-'){
                     check=true;
                 }
                 if(check) {
