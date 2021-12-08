@@ -202,6 +202,7 @@
                         android:layout_weight="25"
                         android:drawableTop="@drawable/atm_icon"
                         android:text="ATM"
+                        android:id="@+id/home_ATM_button"
                         android:textSize="14sp"
                         android:gravity="center"
                         android:background="#00ff0000"
