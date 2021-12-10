@@ -256,6 +256,7 @@
                         android:textColor="@color/black"
                         android:fontFamily="@font/login_font"
                         android:backgroundTint="@color/white"
+                        android:id="@+id/home_setting_button"
                         />
 
                 </LinearLayout>
