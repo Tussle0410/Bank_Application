@@ -8,7 +8,7 @@ Java기반 Android Studio
 2)테이블을 형성한다.( Bank_Mysql.txt에 작성해놓았습니다.)
 (Form a table. (I wrote it in Bank_Mysql.txt))
 
-3)cmd를 통해 인터넷 IP를 얻은 후 databaseIP 클래스에 자신의 아이피주소 변경하기
+3)cmd(명령어 : ipconfig)를 통해 인터넷 IP를 얻은 후 databaseIP 클래스에 자신의 아이피주소 변경하기
 (After obtaining an Internet IP through cmd, change your IP address in the database IP class.)
 
 참고 블로그(https://webnautes.tistory.com/828)
