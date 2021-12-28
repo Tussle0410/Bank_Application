@@ -258,7 +258,20 @@
                         android:backgroundTint="@color/white"
                         android:id="@+id/home_setting_button"
                         />
-
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:drawableTop="@drawable/mybank_setting_icon"
+                        android:text="설정"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="#00ff0000"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/login_font"
+                        android:backgroundTint="@color/white"
+                        android:id="@+id/home_ex_button"
+                        />
                 </LinearLayout>
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
