@@ -61,7 +61,7 @@
               android:fontFamily="@font/login_font"
               android:textSize="30sp"
               android:gravity="right|bottom"
-              android:textColor="@color/black"/>
+              android:textColor="@color/main_color"/>
           <TextView
               android:layout_width="0dp"
               android:layout_height="match_parent"
@@ -125,6 +125,12 @@
           android:layout_height="0dp"
           android:layout_weight="0.5"
           android:background="@color/gray"/>
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="60"
+          android:id="@+id/drawer_recycleView"
+          />
   </LinearLayout>
 
 </LinearLayout>
