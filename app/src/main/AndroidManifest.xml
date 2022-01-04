@@ -33,6 +33,7 @@
         <activity android:name=".remittance_pwCheck_activity"/>
         <activity android:name=".remittance_complete_activity"/>
         <activity android:name=".remittance_history_activity"/>
+        <activity android:name=".inquiry_activity"/>
     </application>
 
 </manifest>
